@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>스페인어 단어 퀴즈 · 2·3·4과</title>
+<style>
+  :root{
+    --bg:#0f1226; --bg2:#171a35; --card:#1e2246; --card2:#262a52;
+    --ink:#f4f5ff; --muted:#a3a7d4; --line:#33386b;
+    --red:#e63946; --gold:#ffca3a; --green:#38b000; --grad1:#ff6b6b; --grad2:#ffd166;
+    --accent:#7c6bff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:'Apple SD Gothic Neo','Malgun Gothic',system-ui,-apple-system,sans-serif;
+    background:radial-gradient(1200px 800px at 50% -10%,#232752 0%,var(--bg) 60%);
+    color:var(--ink);min-height:100vh;display:flex;flex-direction:column;align-items:center;
+    padding:18px 14px 40px;
+  }
+  .wrap{width:100%;max-width:560px}
+  header{text-align:center;margin-bottom:16px}
+  header h1{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+  header h1 .flag{background:linear-gradient(90deg,var(--red) 0 33%,var(--gold) 33% 66%,var(--red) 66% 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);font-size:.82rem;margin-top:4px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+
+  .label{font-size:.78rem;color:var(--muted);font-weight:700;margin:16px 0 8px;display:flex;align-items:center;gap:6px}
+  .label:first-child{margin-top:0}
+  .opts{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    flex:1 1 auto;min-width:64px;text-align:center;padding:11px 12px;border-radius:12px;
+    background:var(--card2);border:1.5px solid var(--line);color:var(--muted);
+    font-size:.9rem;font-weight:700;cursor:pointer;transition:.15s;user-select:none;
+  }
+  .chip:hover{border-color:var(--accent)}
+  .chip.on{background:linear-gradient(135deg,var(--accent),#a99bff);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(124,107,255,.4)}
+
+  .btn{
+    width:100%;padding:15px;border:none;border-radius:14px;font-size:1.02rem;font-weight:800;
+    cursor:pointer;margin-top:22px;color:#1a1030;
+    background:linear-gradient(135deg,var(--grad1),var(--grad2));
+    box-shadow:0 10px 26px rgba(255,107,107,.35);transition:.15s;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0)}
+  .btn.ghost{background:transparent;color:var(--muted);border:1.5px solid var(--line);box-shadow:none;font-weight:700}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--ink)}
+
+  .stat{font-size:.8rem;color:var(--muted);text-align:center;margin-top:14px}
+  .stat b{color:var(--gold)}
+
+  /* quiz screen */
+  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px}
+  .pill{font-size:.72rem;font-weight:700;color:var(--muted);background:var(--card);border:1px solid var(--line);padding:6px 11px;border-radius:20px}
+  .pill b{color:var(--ink)}
+  .streak{color:var(--gold)}
+  .bar{height:8px;background:var(--card);border-radius:20px;overflow:hidden;margin-bottom:18px;border:1px solid var(--line)}
+  .bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--grad1),var(--grad2));transition:width .3s}
+
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px 22px;text-align:center;min-height:150px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .qtag{font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+  .qword{font-size:2rem;font-weight:800;line-height:1.25;word-break:keep-all}
+  .qword.ko{font-size:1.7rem}
+  .qhint{font-size:.8rem;color:var(--muted)}
+
+  .answers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+  .ans{
+    padding:16px 12px;border-radius:14px;background:var(--card);border:1.5px solid var(--line);
+    color:var(--ink);font-size:1rem;font-weight:700;cursor:pointer;transition:.12s;text-align:center;word-break:keep-all;line-height:1.3;
+  }
+  .ans:hover{border-color:var(--accent);background:var(--card2)}
+  .ans.correct{background:rgba(56,176,0,.18);border-color:var(--green);color:#7be05a}
+  .ans.wrong{background:rgba(230,57,70,.16);border-color:var(--red);color:#ff8a93}
+  .ans.dim{opacity:.45}
+  .ans:disabled{cursor:default}
+
+  /* typing mode */
+  .typewrap{margin-top:16px}
+  .tinput{width:100%;padding:16px;border-radius:14px;background:var(--card);border:1.5px solid var(--line);color:var(--ink);font-size:1.1rem;font-weight:700;text-align:center;outline:none}
+  .tinput:focus{border-color:var(--accent)}
+  .feedback{text-align:center;font-weight:800;margin-top:14px;min-height:26px;font-size:1rem}
+  .feedback.ok{color:#7be05a}
+  .feedback.no{color:#ff8a93}
+  .feedback small{display:block;color:var(--muted);font-weight:600;font-size:.82rem;margin-top:3px}
+
+  .next{margin-top:14px}
+
+  /* result */
+  .result{text-align:center}
+  .score-big{font-size:3.4rem;font-weight:800;background:linear-gradient(135deg,var(--grad1),var(--grad2));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+  .review{margin-top:20px;text-align:left;max-height:320px;overflow-y:auto}
+  .review h3{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+  .rrow{display:flex;justify-content:space-between;gap:10px;padding:11px 12px;background:var(--card2);border-radius:10px;margin-bottom:7px;font-size:.9rem;align-items:center}
+  .rrow .es{font-weight:800}
+  .rrow .ko{color:var(--muted);text-align:right}
+  .emoji{font-size:2.6rem}
+  .hidden{display:none}
+  .kbd{font-size:.7rem;color:var(--muted);text-align:center;margin-top:8px}
+  @media(max-width:400px){ .qword{font-size:1.7rem} .answers{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1><span class="flag">Español</span> 단어 퀴즈 🇪🇸</h1>
+    <p>KIIP 2·3·4과 · 단어와 표현 마스터하기</p>
+  </header>
+
+  <!-- ================= START ================= -->
+  <section id="start" class="card">
+    <div class="label">📚 과 선택 (여러 개 선택 가능)</div>
+    <div class="opts" id="lessonOpts">
+      <div class="chip on" data-lesson="2">2과</div>
+      <div class="chip on" data-lesson="3">3과</div>
+      <div class="chip on" data-lesson="4">4과</div>
+    </div>
+
+    <div class="label">🗂️ 분야 (전체 = 모두)</div>
+    <div class="opts" id="catOpts"></div>
+
+    <div class="label">🔄 방향</div>
+    <div class="opts" id="dirOpts">
+      <div class="chip on" data-dir="es2ko">스페인어 → 한국어</div>
+      <div class="chip" data-dir="ko2es">한국어 → 스페인어</div>
+      <div class="chip" data-dir="mix">섞기</div>
+    </div>
+
+    <div class="label">🎮 방식</div>
+    <div class="opts" id="modeOpts">
+      <div class="chip on" data-mode="mc">4지선다</div>
+      <div class="chip" data-mode="type">직접 입력</div>
+      <div class="chip" data-mode="flash">플래시카드</div>
+    </div>
+
+    <div class="label">🔢 문제 수</div>
+    <div class="opts" id="countOpts">
+      <div class="chip" data-count="10">10</div>
+      <div class="chip on" data-count="20">20</div>
+      <div class="chip" data-count="30">30</div>
+      <div class="chip" data-count="0">전체</div>
+    </div>
+
+    <button class="btn" id="startBtn">시작하기 ▶</button>
+    <div class="stat">총 <b id="totalCount">0</b>개 단어·표현 수록</div>
+  </section>
+
+  <!-- ================= QUIZ ================= -->
+  <section id="quiz" class="hidden">
+    <div class="topbar">
+      <span class="pill"><b id="qNum">1</b> / <span id="qTot">20</span></span>
+      <span class="pill streak">🔥 연속 <b id="streak" style="color:var(--gold)">0</b></span>
+      <span class="pill">✅ <b id="correctN">0</b></span>
+    </div>
+    <div class="bar"><i id="progbar"></i></div>
+
+    <div class="qcard">
+      <div class="qtag" id="qtag">스페인어</div>
+      <div class="qword" id="qword">—</div>
+      <div class="qhint" id="qhint"></div>
+    </div>
+
+    <!-- multiple choice -->
+    <div class="answers hidden" id="answers"></div>
+
+    <!-- typing -->
+    <div class="typewrap hidden" id="typewrap">
+      <input class="tinput" id="tinput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="정답 입력 후 Enter">
+      <div class="kbd" id="accentHint"></div>
+    </div>
+
+    <!-- flashcard -->
+    <div class="answers hidden" id="flashans" style="grid-template-columns:1fr 1fr">
+      <button class="ans" data-fc="no" style="border-color:var(--red)">🙈 몰라요</button>
+      <button class="ans" data-fc="yes" style="border-color:var(--green)">😎 알아요</button>
+    </div>
+
+    <div class="feedback" id="feedback"></div>
+    <button class="btn next hidden" id="nextBtn">다음 →</button>
+    <button class="btn ghost" id="quitBtn" style="margin-top:10px">그만하기</button>
+  </section>
+
+  <!-- ================= RESULT ================= -->
+  <section id="result" class="hidden">
+    <div class="card result">
+      <div class="emoji" id="rEmoji">🎉</div>
+      <div class="score-big"><span id="rScore">0</span>%</div>
+      <div class="stat" style="font-size:.95rem;margin-top:6px"><b id="rCorrect">0</b>개 정답 / <span id="rTotal">0</span>문제 · 최고 연속 <b id="rStreak">0</b>🔥</div>
+      <div class="review" id="review"></div>
+      <button class="btn" id="retryWrong" style="margin-top:20px">❌ 틀린 것만 다시</button>
+      <button class="btn ghost" id="againBtn">🔁 처음으로</button>
+    </div>
+  </section>
+</div>
+
+<script>
+/* ============ 단어 데이터 (스페인어 · 한국어 · 과 · 분야) ============ */
+const DATA = [
+/* ---------- 2과 ---------- */
+{es:"yo",ko:"나",l:2,c:"인칭·ser"},
+{es:"tú",ko:"너",l:2,c:"인칭·ser"},
+{es:"él",ko:"그",l:2,c:"인칭·ser"},
+{es:"ella",ko:"그녀",l:2,c:"인칭·ser"},
+{es:"usted",ko:"당신 (공식적)",l:2,c:"인칭·ser"},
+{es:"nosotros/as",ko:"우리",l:2,c:"인칭·ser"},
+{es:"vosotros/as",ko:"너희",l:2,c:"인칭·ser"},
+{es:"ellos/ellas",ko:"그들 / 그녀들",l:2,c:"인칭·ser"},
+{es:"ustedes",ko:"당신들",l:2,c:"인칭·ser"},
+{es:"soy",ko:"(나는) ~이다",l:2,c:"인칭·ser"},
+{es:"eres",ko:"(너는) ~이다",l:2,c:"인칭·ser"},
+{es:"es",ko:"(그/당신은) ~이다",l:2,c:"인칭·ser"},
+{es:"somos",ko:"(우리는) ~이다",l:2,c:"인칭·ser"},
+{es:"sois",ko:"(너희는) ~이다",l:2,c:"인칭·ser"},
+{es:"son",ko:"(그들은) ~이다",l:2,c:"인칭·ser"},
+{es:"Hola",ko:"안녕 (만났을 때)",l:2,c:"인사·표현"},
+{es:"Buenos días",ko:"안녕하세요 (아침)",l:2,c:"인사·표현"},
+{es:"Buenas tardes",ko:"안녕하세요 (오후)",l:2,c:"인사·표현"},
+{es:"Buenas noches",ko:"안녕하세요 / 잘 자요 (밤)",l:2,c:"인사·표현"},
+{es:"Hasta mañana",ko:"내일 봐",l:2,c:"인사·표현"},
+{es:"Hasta luego",ko:"나중에 봐",l:2,c:"인사·표현"},
+{es:"Hasta pronto",ko:"곧 봐",l:2,c:"인사·표현"},
+{es:"Nos vemos",ko:"우리 또 보자",l:2,c:"인사·표현"},
+{es:"Adiós",ko:"안녕히 가세요 (작별)",l:2,c:"인사·표현"},
+{es:"Chao",ko:"잘 가",l:2,c:"인사·표현"},
+{es:"Mucho gusto",ko:"만나서 반갑습니다",l:2,c:"인사·표현"},
+{es:"Igualmente",ko:"저도요",l:2,c:"인사·표현"},
+{es:"Encantado",ko:"만나서 반갑습니다 (남자)",l:2,c:"인사·표현"},
+{es:"Encantada",ko:"만나서 반갑습니다 (여자)",l:2,c:"인사·표현"},
+{es:"¿Cómo te llamas?",ko:"이름이 뭐니?",l:2,c:"인사·표현"},
+{es:"¿Cuál es tu nombre?",ko:"네 이름이 뭐니?",l:2,c:"인사·표현"},
+{es:"Me llamo ~",ko:"내 이름은 ~야",l:2,c:"인사·표현"},
+{es:"Mi nombre es ~",ko:"내 이름은 ~야",l:2,c:"인사·표현"},
+{es:"¿Quién eres?",ko:"너 누구니?",l:2,c:"인사·표현"},
+{es:"¿De dónde eres?",ko:"어디 출신이니?",l:2,c:"인사·표현"},
+{es:"Soy de ~",ko:"나는 ~ 출신이야",l:2,c:"인사·표현"},
+{es:"Gracias",ko:"고맙습니다",l:2,c:"인사·표현"},
+{es:"Muchas gracias",ko:"매우 고맙습니다",l:2,c:"인사·표현"},
+{es:"Mil gracias",ko:"정말 고맙습니다",l:2,c:"인사·표현"},
+{es:"De nada",ko:"천만에요",l:2,c:"인사·표현"},
+{es:"No hay de qué",ko:"별거 아니에요",l:2,c:"인사·표현"},
+{es:"Lo siento (mucho)",ko:"(정말) 미안합니다",l:2,c:"인사·표현"},
+{es:"Perdón",ko:"죄송합니다",l:2,c:"인사·표현"},
+{es:"No te preocupes",ko:"신경쓰지 마",l:2,c:"인사·표현"},
+{es:"No pasa nada",ko:"괜찮아요",l:2,c:"인사·표현"},
+{es:"Está bien",ko:"괜찮아요",l:2,c:"인사·표현"},
+{es:"Bienvenido/a",ko:"환영합니다",l:2,c:"인사·표현"},
+{es:"este / esta",ko:"이 (것)",l:2,c:"지시사"},
+{es:"ese / esa",ko:"그 (것)",l:2,c:"지시사"},
+{es:"aquel / aquella",ko:"저 (것)",l:2,c:"지시사"},
+{es:"alto/ta",ko:"키가 큰",l:2,c:"외모·성격"},
+{es:"bajo/ja",ko:"키가 작은",l:2,c:"외모·성격"},
+{es:"bonito/ta",ko:"예쁜, 귀여운",l:2,c:"외모·성격"},
+{es:"débil",ko:"연약한",l:2,c:"외모·성격"},
+{es:"delgado/da",ko:"마른",l:2,c:"외모·성격"},
+{es:"fuerte",ko:"힘이 센",l:2,c:"외모·성격"},
+{es:"feo/a",ko:"못생긴",l:2,c:"외모·성격"},
+{es:"gordo/da",ko:"뚱뚱한",l:2,c:"외모·성격"},
+{es:"guapo/pa",ko:"잘생긴",l:2,c:"외모·성격"},
+{es:"joven",ko:"젊은",l:2,c:"외모·성격"},
+{es:"lindo/da",ko:"예쁜",l:2,c:"외모·성격"},
+{es:"viejo/ja",ko:"늙은",l:2,c:"외모·성격"},
+{es:"agradable",ko:"붙임성이 좋은",l:2,c:"외모·성격"},
+{es:"alegre",ko:"쾌활한",l:2,c:"외모·성격"},
+{es:"amable",ko:"친절한",l:2,c:"외모·성격"},
+{es:"atento/ta",ko:"주의 깊은",l:2,c:"외모·성격"},
+{es:"generoso/sa",ko:"관대한",l:2,c:"외모·성격"},
+{es:"listo/ta",ko:"영리한",l:2,c:"외모·성격"},
+{es:"serio/ria",ko:"진지한",l:2,c:"외모·성격"},
+{es:"simpático/ca",ko:"친절한, 상냥한",l:2,c:"외모·성격"},
+{es:"sincero/ra",ko:"정직한",l:2,c:"외모·성격"},
+{es:"sociable",ko:"사교적인",l:2,c:"외모·성격"},
+{es:"tímido/da",ko:"수줍은",l:2,c:"외모·성격"},
+{es:"trabajador/ra",ko:"근면한, 성실한",l:2,c:"외모·성격"},
+{es:"optimista",ko:"낙천적인",l:2,c:"외모·성격"},
+{es:"extrovertido/a",ko:"외향적인",l:2,c:"외모·성격"},
+{es:"paciente",ko:"인내심 있는",l:2,c:"외모·성격"},
+{es:"responsable",ko:"책임감 있는",l:2,c:"외모·성격"},
+{es:"divertido/a",ko:"재미있는",l:2,c:"외모·성격"},
+{es:"activo/a",ko:"활발한",l:2,c:"외모·성격"},
+{es:"amigo/a",ko:"친구",l:2,c:"기본 명사"},
+{es:"padre",ko:"아버지",l:2,c:"기본 명사"},
+{es:"madre",ko:"어머니",l:2,c:"기본 명사"},
+{es:"estudiante",ko:"학생",l:2,c:"기본 명사"},
+{es:"nombre",ko:"이름",l:2,c:"기본 명사"},
+{es:"profesor/a",ko:"교수, 선생님",l:2,c:"기본 명사"},
+{es:"actor / actriz",ko:"배우 (남 / 여)",l:2,c:"기본 명사"},
+{es:"cantante",ko:"가수",l:2,c:"기본 명사"},
+{es:"Administración de Empresas",ko:"경영학",l:2,c:"전공"},
+{es:"Economía",ko:"경제학",l:2,c:"전공"},
+{es:"Sociología",ko:"사회학",l:2,c:"전공"},
+{es:"Psicología",ko:"심리학",l:2,c:"전공"},
+{es:"Filosofía",ko:"철학",l:2,c:"전공"},
+{es:"Lingüística",ko:"언어학",l:2,c:"전공"},
+{es:"Geografía",ko:"지리학",l:2,c:"전공"},
+{es:"Ciencias Políticas",ko:"정치학",l:2,c:"전공"},
+{es:"Estadística",ko:"통계학",l:2,c:"전공"},
+{es:"Química",ko:"화학",l:2,c:"전공"},
+{es:"Biología",ko:"생명과학",l:2,c:"전공"},
+{es:"Medicina",ko:"의학",l:2,c:"전공"},
+{es:"Enfermería",ko:"간호학",l:2,c:"전공"},
+{es:"Arquitectura",ko:"건축학",l:2,c:"전공"},
+{es:"Diseño",ko:"디자인",l:2,c:"전공"},
+{es:"Ingeniería Informática",ko:"컴퓨터공학",l:2,c:"전공"},
+{es:"Ingeniería Mecánica",ko:"기계공학",l:2,c:"전공"},
+{es:"Historia",ko:"역사학",l:2,c:"전공"},
+{es:"Humanidades",ko:"인문학",l:2,c:"전공"},
+{es:"Estudios Internacionales",ko:"국제학",l:2,c:"전공"},
+
+/* ---------- 3과 ---------- */
+{es:"estoy",ko:"(나는) ~한 상태다",l:3,c:"estar·상태"},
+{es:"estás",ko:"(너는) ~한 상태다",l:3,c:"estar·상태"},
+{es:"está",ko:"(그/당신은) ~한 상태다",l:3,c:"estar·상태"},
+{es:"estamos",ko:"(우리는) ~한 상태다",l:3,c:"estar·상태"},
+{es:"estáis",ko:"(너희는) ~한 상태다",l:3,c:"estar·상태"},
+{es:"están",ko:"(그들은) ~한 상태다",l:3,c:"estar·상태"},
+{es:"contento/a",ko:"기쁜, 만족한",l:3,c:"estar·상태"},
+{es:"triste",ko:"슬픈",l:3,c:"estar·상태"},
+{es:"enfermo/a",ko:"아픈",l:3,c:"estar·상태"},
+{es:"cansado/a",ko:"지친, 피곤한",l:3,c:"estar·상태"},
+{es:"enojado/da",ko:"화난 (중남미)",l:3,c:"estar·상태"},
+{es:"enfadado/da",ko:"화난 (스페인)",l:3,c:"estar·상태"},
+{es:"aburrido/da",ko:"지루한, 따분한",l:3,c:"estar·상태"},
+{es:"asustado/da",ko:"놀란",l:3,c:"estar·상태"},
+{es:"emocionado/da",ko:"신이 난 (excited)",l:3,c:"estar·상태"},
+{es:"nervioso/sa",ko:"긴장한, 불안한",l:3,c:"estar·상태"},
+{es:"sorprendido/da",ko:"놀란",l:3,c:"estar·상태"},
+{es:"ocupado/da",ko:"바쁜",l:3,c:"estar·상태"},
+{es:"preocupado/da",ko:"걱정하는",l:3,c:"estar·상태"},
+{es:"irritado/da",ko:"짜증난",l:3,c:"estar·상태"},
+{es:"¿Cómo estás?",ko:"어떻게 지내?",l:3,c:"안부·표현"},
+{es:"¿Qué tal?",ko:"어떻게 지내?",l:3,c:"안부·표현"},
+{es:"¿Qué hay?",ko:"잘 지내?",l:3,c:"안부·표현"},
+{es:"Muy bien",ko:"아주 좋아",l:3,c:"안부·표현"},
+{es:"Bien",ko:"좋아",l:3,c:"안부·표현"},
+{es:"Regular",ko:"그저 그래",l:3,c:"안부·표현"},
+{es:"Así así",ko:"그저 그래",l:3,c:"안부·표현"},
+{es:"Más o menos",ko:"그럭저럭",l:3,c:"안부·표현"},
+{es:"¿Dónde estás?",ko:"너 어디에 있어?",l:3,c:"안부·표현"},
+{es:"la biblioteca",ko:"도서관",l:3,c:"장소"},
+{es:"la librería",ko:"서점",l:3,c:"장소"},
+{es:"el centro estudiantil",ko:"학생회관",l:3,c:"장소"},
+{es:"la oficina del departamento",ko:"학과사무실",l:3,c:"장소"},
+{es:"la residencia",ko:"기숙사",l:3,c:"장소"},
+{es:"el aula",ko:"강의실, 교실",l:3,c:"장소"},
+{es:"el laboratorio",ko:"실험실, 랩실",l:3,c:"장소"},
+{es:"el club de estudiantes",ko:"동아리실",l:3,c:"장소"},
+{es:"el estadio",ko:"경기장, 대운동장",l:3,c:"장소"},
+{es:"el teatro",ko:"공연장, 극장",l:3,c:"장소"},
+{es:"la cafetería",ko:"카페",l:3,c:"장소"},
+{es:"el gimnasio",ko:"체육관, 짐",l:3,c:"장소"},
+{es:"el restaurante",ko:"식당",l:3,c:"장소"},
+{es:"la tienda de conveniencia",ko:"편의점",l:3,c:"장소"},
+{es:"el centro de salud",ko:"보건소",l:3,c:"장소"},
+{es:"la zapatería",ko:"신발가게",l:3,c:"장소"},
+{es:"la carnicería",ko:"정육점",l:3,c:"장소"},
+{es:"la frutería",ko:"과일가게",l:3,c:"장소"},
+{es:"la heladería",ko:"아이스크림 가게",l:3,c:"장소"},
+{es:"la panadería",ko:"빵집",l:3,c:"장소"},
+{es:"la papelería",ko:"문방구",l:3,c:"장소"},
+{es:"la florería",ko:"꽃집",l:3,c:"장소"},
+{es:"el cine",ko:"영화관",l:3,c:"장소"},
+{es:"el supermercado",ko:"슈퍼마켓",l:3,c:"장소"},
+{es:"el museo",ko:"박물관",l:3,c:"장소"},
+{es:"el banco",ko:"은행",l:3,c:"장소"},
+{es:"la oficina de correos",ko:"우체국",l:3,c:"장소"},
+{es:"la farmacia",ko:"약국",l:3,c:"장소"},
+{es:"el hospital",ko:"병원",l:3,c:"장소"},
+{es:"en",ko:"~에",l:3,c:"위치 표현"},
+{es:"cerca de",ko:"~ 가까이",l:3,c:"위치 표현"},
+{es:"lejos de",ko:"~ 멀리",l:3,c:"위치 표현"},
+{es:"enfrente de / frente a",ko:"~ 맞은편에",l:3,c:"위치 표현"},
+{es:"a la derecha de",ko:"~ 오른편에",l:3,c:"위치 표현"},
+{es:"a la izquierda de",ko:"~ 왼편에",l:3,c:"위치 표현"},
+{es:"al lado de",ko:"~ 옆에",l:3,c:"위치 표현"},
+{es:"entre A y B",ko:"A와 B 사이에",l:3,c:"위치 표현"},
+{es:"aquí",ko:"여기",l:3,c:"위치 표현"},
+{es:"ahí",ko:"거기",l:3,c:"위치 표현"},
+{es:"allí",ko:"저기",l:3,c:"위치 표현"},
+{es:"limpio/a",ko:"깨끗한",l:3,c:"형용사"},
+{es:"moderno/a",ko:"현대적인",l:3,c:"형용사"},
+{es:"grande",ko:"큰",l:3,c:"형용사"},
+{es:"pequeño/a",ko:"작은",l:3,c:"형용사"},
+{es:"lleno/a (de gente)",ko:"(사람들로) 가득 찬",l:3,c:"형용사"},
+{es:"abierto/a",ko:"열린",l:3,c:"형용사"},
+{es:"cerrado/a",ko:"닫힌",l:3,c:"형용사"},
+
+/* ---------- 4과 ---------- */
+{es:"cero",ko:"0",l:4,c:"숫자"},
+{es:"uno",ko:"1",l:4,c:"숫자"},
+{es:"dos",ko:"2",l:4,c:"숫자"},
+{es:"tres",ko:"3",l:4,c:"숫자"},
+{es:"cuatro",ko:"4",l:4,c:"숫자"},
+{es:"cinco",ko:"5",l:4,c:"숫자"},
+{es:"seis",ko:"6",l:4,c:"숫자"},
+{es:"siete",ko:"7",l:4,c:"숫자"},
+{es:"ocho",ko:"8",l:4,c:"숫자"},
+{es:"nueve",ko:"9",l:4,c:"숫자"},
+{es:"diez",ko:"10",l:4,c:"숫자"},
+{es:"once",ko:"11",l:4,c:"숫자"},
+{es:"doce",ko:"12",l:4,c:"숫자"},
+{es:"trece",ko:"13",l:4,c:"숫자"},
+{es:"catorce",ko:"14",l:4,c:"숫자"},
+{es:"quince",ko:"15",l:4,c:"숫자"},
+{es:"dieciséis",ko:"16",l:4,c:"숫자"},
+{es:"diecisiete",ko:"17",l:4,c:"숫자"},
+{es:"veinte",ko:"20",l:4,c:"숫자"},
+{es:"veintiuno",ko:"21",l:4,c:"숫자"},
+{es:"treinta",ko:"30",l:4,c:"숫자"},
+{es:"cuarenta",ko:"40",l:4,c:"숫자"},
+{es:"cincuenta",ko:"50",l:4,c:"숫자"},
+{es:"sesenta",ko:"60",l:4,c:"숫자"},
+{es:"setenta",ko:"70",l:4,c:"숫자"},
+{es:"ochenta",ko:"80",l:4,c:"숫자"},
+{es:"noventa",ko:"90",l:4,c:"숫자"},
+{es:"cien",ko:"100",l:4,c:"숫자"},
+{es:"¿Qué hora es?",ko:"몇 시야?",l:4,c:"시간"},
+{es:"en punto",ko:"정각",l:4,c:"시간"},
+{es:"cuarto",ko:"15분 (¼)",l:4,c:"시간"},
+{es:"media",ko:"30분 (½)",l:4,c:"시간"},
+{es:"casi",ko:"거의",l:4,c:"시간"},
+{es:"segundo",ko:"초",l:4,c:"시간"},
+{es:"minuto",ko:"분",l:4,c:"시간"},
+{es:"hora",ko:"시간",l:4,c:"시간"},
+{es:"día",ko:"날, 일",l:4,c:"시간"},
+{es:"semana",ko:"주",l:4,c:"시간"},
+{es:"mes",ko:"달, 월",l:4,c:"시간"},
+{es:"año",ko:"해, 년",l:4,c:"시간"},
+{es:"más",ko:"더하기 (+)",l:4,c:"계산"},
+{es:"menos",ko:"빼기 (−)",l:4,c:"계산"},
+{es:"por",ko:"곱하기 (×)",l:4,c:"계산"},
+{es:"dividido por/entre",ko:"나누기 (÷)",l:4,c:"계산"},
+{es:"tengo",ko:"(나는) 가지고 있다",l:4,c:"tener"},
+{es:"tienes",ko:"(너는) 가지고 있다",l:4,c:"tener"},
+{es:"tiene",ko:"(그/당신은) 가지고 있다",l:4,c:"tener"},
+{es:"tenemos",ko:"(우리는) 가지고 있다",l:4,c:"tener"},
+{es:"tenéis",ko:"(너희는) 가지고 있다",l:4,c:"tener"},
+{es:"tienen",ko:"(그들은) 가지고 있다",l:4,c:"tener"},
+{es:"tener frío",ko:"춥다",l:4,c:"tener 표현"},
+{es:"tener calor",ko:"덥다",l:4,c:"tener 표현"},
+{es:"tener hambre",ko:"배고프다",l:4,c:"tener 표현"},
+{es:"tener sed",ko:"목마르다",l:4,c:"tener 표현"},
+{es:"tener prisa",ko:"바쁘다, 서두르다",l:4,c:"tener 표현"},
+{es:"tener miedo",ko:"무섭다",l:4,c:"tener 표현"},
+{es:"tener sueño",ko:"졸리다",l:4,c:"tener 표현"},
+{es:"tener gripe",ko:"독감에 걸리다",l:4,c:"tener 표현"},
+{es:"tener fiebre",ko:"열이 있다",l:4,c:"tener 표현"},
+{es:"tener tos",ko:"기침을 하다",l:4,c:"tener 표현"},
+{es:"tener ... años",ko:"~살이다",l:4,c:"tener 표현"},
+{es:"tener cuidado",ko:"조심하다",l:4,c:"tener 표현"},
+{es:"tener éxito",ko:"성공하다",l:4,c:"tener 표현"},
+{es:"tener suerte",ko:"운이 좋다",l:4,c:"tener 표현"},
+{es:"tener razón",ko:"옳다, 일리가 있다",l:4,c:"tener 표현"},
+{es:"tener tiempo",ko:"시간이 있다",l:4,c:"tener 표현"},
+{es:"¿Cuántos años tienes?",ko:"몇 살이야?",l:4,c:"tener 표현"},
+{es:"rosado",ko:"분홍색",l:4,c:"색깔"},
+{es:"azul",ko:"파란색",l:4,c:"색깔"},
+{es:"verde",ko:"초록색",l:4,c:"색깔"},
+{es:"rojo/a",ko:"빨간색",l:4,c:"색깔"},
+{es:"gris",ko:"회색",l:4,c:"색깔"},
+{es:"violeta",ko:"보라색",l:4,c:"색깔"},
+{es:"amarillo/a",ko:"노란색",l:4,c:"색깔"},
+{es:"blanco/a",ko:"흰색",l:4,c:"색깔"},
+{es:"negro/a",ko:"검은색",l:4,c:"색깔"},
+{es:"marrón / café",ko:"갈색",l:4,c:"색깔"},
+{es:"naranja",ko:"주황색",l:4,c:"색깔"},
+{es:"la mochila",ko:"배낭",l:4,c:"기본 명사"},
+{es:"el bolso / la bolsa",ko:"가방",l:4,c:"기본 명사"},
+{es:"los ojos",ko:"눈",l:4,c:"기본 명사"},
+{es:"el pelo",ko:"머리카락",l:4,c:"기본 명사"},
+{es:"la mascota",ko:"반려동물",l:4,c:"기본 명사"},
+{es:"el perro",ko:"개",l:4,c:"기본 명사"},
+{es:"el gato",ko:"고양이",l:4,c:"기본 명사"},
+{es:"el libro",ko:"책",l:4,c:"기본 명사"},
+{es:"el coche",ko:"자동차",l:4,c:"기본 명사"},
+{es:"rubio/a",ko:"금발의",l:4,c:"형용사"},
+{es:"talentoso/a",ko:"재능 있는",l:4,c:"형용사"},
+];
+
+/* ============ 상태 ============ */
+const $ = id => document.getElementById(id);
+let cfg = {lessons:new Set([2,3,4]), cat:'전체', dir:'es2ko', mode:'mc', count:20};
+let queue=[], idx=0, correct=0, streak=0, maxStreak=0, wrong=[], answered=false;
+
+/* 분야 칩 만들기 */
+function buildCats(){
+  const cats = ['전체', ...new Set(DATA.map(d=>d.c))];
+  const box = $('catOpts'); box.innerHTML='';
+  cats.forEach((c,i)=>{
+    const el=document.createElement('div');
+    el.className='chip'+(i===0?' on':''); el.dataset.cat=c; el.textContent=c;
+    box.appendChild(el);
+  });
+}
+buildCats();
+$('totalCount').textContent = DATA.length;
+
+/* 칩 토글 로직 */
+function singleSelect(box, on){ [...box.children].forEach(c=>c.classList.remove('on')); on.classList.add('on'); }
+
+$('lessonOpts').addEventListener('click',e=>{
+  const c=e.target.closest('.chip'); if(!c)return;
+  const l=+c.dataset.lesson;
+  if(cfg.lessons.has(l)){ if(cfg.lessons.size>1){cfg.lessons.delete(l);c.classList.remove('on');} }
+  else { cfg.lessons.add(l); c.classList.add('on'); }
+});
+$('catOpts').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if(!c)return; singleSelect($('catOpts'),c); cfg.cat=c.dataset.cat; });
+$('dirOpts').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if(!c)return; singleSelect($('dirOpts'),c); cfg.dir=c.dataset.dir; });
+$('modeOpts').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if(!c)return; singleSelect($('modeOpts'),c); cfg.mode=c.dataset.mode; });
+$('countOpts').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if(!c)return; singleSelect($('countOpts'),c); cfg.count=+c.dataset.count; });
+
+/* ============ 게임 시작 ============ */
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+
+function buildQueue(){
+  let pool = DATA.filter(d=>cfg.lessons.has(d.l) && (cfg.cat==='전체'||d.c===cfg.cat));
+  pool = shuffle(pool);
+  if(cfg.count>0) pool = pool.slice(0,cfg.count);
+  return pool;
+}
+
+$('startBtn').addEventListener('click',()=>{
+  queue = buildQueue();
+  if(queue.length===0){ alert('선택한 조건에 해당하는 단어가 없어요. 다른 조합을 골라주세요.'); return; }
+  idx=0; correct=0; streak=0; maxStreak=0; wrong=[];
+  $('start').classList.add('hidden'); $('result').classList.add('hidden');
+  $('quiz').classList.remove('hidden');
+  render();
+});
+
+/* 방향 결정 (mix면 랜덤) */
+function dirFor(item){
+  if(cfg.dir==='mix') return Math.random()<0.5?'es2ko':'ko2es';
+  return cfg.dir;
+}
+
+let curDir='es2ko';
+function render(){
+  answered=false;
+  const item = queue[idx];
+  curDir = dirFor(item);
+  const isEs2Ko = curDir==='es2ko';
+  const q = isEs2Ko ? item.es : item.ko;
+  const a = isEs2Ko ? item.ko : item.es;
+
+  $('qNum').textContent = idx+1;
+  $('qTot').textContent = queue.length;
+  $('correctN').textContent = correct;
+  $('streak').textContent = streak;
+  $('progbar').style.width = (idx/queue.length*100)+'%';
+
+  $('qtag').textContent = isEs2Ko ? '스페인어 → 한국어' : '한국어 → 스페인어';
+  $('qword').textContent = q;
+  $('qword').className = 'qword'+(isEs2Ko?'':' ko');
+  $('qhint').textContent = '['+item.l+'과 · '+item.c+']';
+
+  $('feedback').textContent=''; $('feedback').className='feedback';
+  $('nextBtn').classList.add('hidden');
+  $('answers').classList.add('hidden');
+  $('typewrap').classList.add('hidden');
+  $('flashans').classList.add('hidden');
+
+  if(cfg.mode==='mc') renderMC(item,a,isEs2Ko);
+  else if(cfg.mode==='type') renderType(item,a,isEs2Ko);
+  else renderFlash(item,a);
+}
+
+/* --- 4지선다 --- */
+function renderMC(item,answer,isEs2Ko){
+  const box=$('answers'); box.classList.remove('hidden'); box.innerHTML='';
+  const key = isEs2Ko?'ko':'es';
+  // 같은 언어의 다른 보기 3개
+  let others = shuffle(DATA.filter(d=>d[key]!==answer)).slice(0,3).map(d=>d[key]);
+  let choices = shuffle([answer,...others]);
+  choices.forEach(ch=>{
+    const b=document.createElement('button');
+    b.className='ans'; b.textContent=ch;
+    b.addEventListener('click',()=>pickMC(b,ch,answer,box));
+    box.appendChild(b);
+  });
+}
+function pickMC(btn,chosen,answer,box){
+  if(answered)return; answered=true;
+  const item=queue[idx];
+  const ok = chosen===answer;
+  [...box.children].forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===answer) b.classList.add('correct');
+    else if(b===btn) b.classList.add('wrong');
+    else b.classList.add('dim');
+  });
+  finish(ok,answer);
+}
+
+/* --- 직접 입력 --- */
+function norm(s){ return s.toLowerCase().trim()
+  .replace(/[¡!¿?.,]/g,'')
+  .replace(/á/g,'a').replace(/é/g,'e').replace(/í/g,'i').replace(/ó/g,'o').replace(/ú/g,'u').replace(/ü/g,'u').replace(/ñ/g,'n')
+  .replace(/\s+/g,' '); }
+function acceptable(input, item, isEs2Ko){
+  const target = isEs2Ko?item.ko:item.es;
+  const ni=norm(input);
+  if(!ni) return false;
+  // 여러 정답 허용: /, ~ 로 분리된 것들
+  let variants = [target];
+  // 슬래시/괄호 처리로 관대하게
+  variants.push(target.replace(/\(.*?\)/g,'').trim());
+  target.split(/[\/,]/).forEach(v=>variants.push(v));
+  // 관사 제거 버전(es)
+  variants.push(target.replace(/^(el|la|los|las|un|una) /,''));
+  variants = variants.map(norm).filter(Boolean);
+  return variants.some(v=> v===ni || v.replace(/[~]/g,'').trim()===ni );
+}
+function renderType(item,answer,isEs2Ko){
+  const w=$('typewrap'); w.classList.remove('hidden');
+  const inp=$('tinput'); inp.value=''; inp.disabled=false;
+  $('accentHint').textContent = isEs2Ko ? '' : '악센트(á é í ó ú ñ)는 없어도 정답 처리돼요';
+  setTimeout(()=>inp.focus(),50);
+  inp.onkeydown=(e)=>{ if(e.key==='Enter'){ if(!answered) submitType(item,answer,isEs2Ko); else next(); } };
+}
+function submitType(item,answer,isEs2Ko){
+  if(answered)return; answered=true;
+  const inp=$('tinput'); inp.disabled=true;
+  const ok=acceptable(inp.value,item,isEs2Ko);
+  finish(ok,answer);
+}
+
+/* --- 플래시카드 --- */
+let flashRevealed=false;
+function renderFlash(item,answer){
+  flashRevealed=false;
+  const box=$('flashans'); box.classList.remove('hidden');
+  $('qhint').textContent='탭하면 정답이 보여요 · ['+item.l+'과]';
+  const qc=document.querySelector('.qcard');
+  qc.style.cursor='pointer';
+  qc.onclick=()=>{
+    if(flashRevealed||answered)return; flashRevealed=true;
+    $('feedback').className='feedback'; $('feedback').innerHTML='정답: <b>'+answer+'</b>';
+  };
+  [...box.children].forEach(b=>{
+    b.disabled=false; b.classList.remove('dim');
+    b.onclick=()=>{ if(answered)return; answered=true;
+      $('feedback').className='feedback'; $('feedback').innerHTML='정답: <b>'+answer+'</b>';
+      finish(b.dataset.fc==='yes', answer, true);
+    };
+  });
+}
+
+/* --- 정답 처리 공통 --- */
+function finish(ok,answer,silent){
+  const item=queue[idx];
+  if(ok){ correct++; streak++; maxStreak=Math.max(maxStreak,streak); }
+  else { streak=0; wrong.push(item); }
+  $('correctN').textContent=correct;
+  $('streak').textContent=streak;
+  if(cfg.mode!=='flash'){
+    const fb=$('feedback');
+    if(ok){ fb.className='feedback ok'; fb.innerHTML='정답이에요! 🎉'; }
+    else { fb.className='feedback no'; fb.innerHTML='아쉬워요 😢<small>정답: '+answer+'</small>'; }
+  }
+  const nb=$('nextBtn'); nb.classList.remove('hidden');
+  nb.textContent = idx+1<queue.length ? '다음 →' : '결과 보기 🏁';
+  nb.focus();
+}
+$('nextBtn').addEventListener('click',next);
+function next(){ idx++; if(idx>=queue.length) showResult(); else render(); }
+
+$('quitBtn').addEventListener('click',()=>{ if(confirm('그만하고 결과를 볼까요?')) showResult(); });
+
+/* ============ 결과 ============ */
+function showResult(){
+  $('quiz').classList.add('hidden');
+  $('result').classList.remove('hidden');
+  const done = idx===0?1:idx; // 최소 1
+  const total = idx>0?idx:queue.length;
+  const pct = Math.round(correct/ (idx>0?idx:1) *100);
+  $('rScore').textContent=isFinite(pct)?pct:0;
+  $('rCorrect').textContent=correct;
+  $('rTotal').textContent= idx>0?idx:0;
+  $('rStreak').textContent=maxStreak;
+  const em = pct>=90?'🏆':pct>=70?'🎉':pct>=50?'💪':'📚';
+  $('rEmoji').textContent=em;
+
+  const rv=$('review');
+  if(wrong.length===0){ rv.innerHTML='<h3>완벽해요! 틀린 게 하나도 없어요 ✨</h3>'; $('retryWrong').style.display='none'; }
+  else {
+    $('retryWrong').style.display='block';
+    let h='<h3>❌ 틀린 단어 ('+wrong.length+')</h3>';
+    wrong.forEach(w=>{ h+='<div class="rrow"><span class="es">'+w.es+'</span><span class="ko">'+w.ko+'</span></div>'; });
+    rv.innerHTML=h;
+  }
+}
+$('retryWrong').addEventListener('click',()=>{
+  if(wrong.length===0)return;
+  queue=shuffle(wrong); idx=0; correct=0; streak=0; maxStreak=0; wrong=[];
+  $('result').classList.add('hidden'); $('quiz').classList.remove('hidden'); render();
+});
+$('againBtn').addEventListener('click',()=>{ $('result').classList.add('hidden'); $('start').classList.remove('hidden'); });
+</script>
+</body>
+</html>
