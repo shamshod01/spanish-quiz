@@ -64,6 +64,13 @@
   .qword{font-size:2rem;font-weight:800;line-height:1.25;word-break:keep-all}
   .qword.ko{font-size:1.7rem}
   .qhint{font-size:.8rem;color:var(--muted)}
+  .speak{margin-top:6px;display:inline-flex;align-items:center;gap:6px;align-self:center;
+    background:var(--card2);border:1.5px solid var(--line);color:var(--gold);
+    font-size:.85rem;font-weight:700;padding:8px 16px;border-radius:20px;cursor:pointer;transition:.15s}
+  .speak:hover{border-color:var(--gold);transform:scale(1.05)}
+  .speak.playing{background:var(--gold);color:#1a1030;border-color:var(--gold)}
+  .speak.off{opacity:.4;cursor:not-allowed}
+  .rspeak{background:none;border:none;color:var(--gold);font-size:1.05rem;cursor:pointer;padding:2px 6px;flex:0 0 auto}
 
   .answers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
   .ans{
@@ -142,6 +149,12 @@
       <div class="chip" data-count="0">전체</div>
     </div>
 
+    <div class="label">🔊 발음 (스페인어 자동 재생)</div>
+    <div class="opts" id="autoOpts">
+      <div class="chip on" data-auto="0">수동 (버튼)</div>
+      <div class="chip" data-auto="1">자동 재생</div>
+    </div>
+
     <button class="btn" id="startBtn">시작하기 ▶</button>
     <div class="stat">총 <b id="totalCount">0</b>개 단어·표현 수록</div>
   </section>
@@ -158,6 +171,7 @@
     <div class="qcard">
       <div class="qtag" id="qtag">스페인어</div>
       <div class="qword" id="qword">—</div>
+      <button class="speak" id="speakBtn">🔊 발음 듣기</button>
       <div class="qhint" id="qhint"></div>
     </div>
 
@@ -286,25 +300,73 @@ const DATA = [
 {es:"profesor/a",ko:"교수, 선생님",l:2,c:"기본 명사"},
 {es:"actor / actriz",ko:"배우 (남 / 여)",l:2,c:"기본 명사"},
 {es:"cantante",ko:"가수",l:2,c:"기본 명사"},
+{es:"Lingüística",ko:"언어학",l:2,c:"전공"},
+{es:"Historia Coreana",ko:"국사학",l:2,c:"전공"},
+{es:"Historia Occidental",ko:"서양사학",l:2,c:"전공"},
+{es:"Historia Oriental",ko:"동양사학",l:2,c:"전공"},
+{es:"Estética",ko:"미학",l:2,c:"전공"},
+{es:"Filosofía",ko:"철학",l:2,c:"전공"},
+{es:"Arqueología e Historia del Arte",ko:"고고미술사학",l:2,c:"전공"},
+{es:"Lenguas y civilizaciones asiáticas",ko:"아시아언어문명학부",l:2,c:"전공"},
+{es:"Humanidades",ko:"인문학",l:2,c:"전공"},
+{es:"Estudios Liberales",ko:"자유전공",l:2,c:"전공"},
+{es:"Lengua y Literatura Hispánicas",ko:"서어서문 (스페인어문학)",l:2,c:"전공"},
+{es:"Lengua y Literatura Alemanas",ko:"독어독문학",l:2,c:"전공"},
+{es:"Lengua y Literatura Chinas",ko:"중어중문학",l:2,c:"전공"},
+{es:"Lengua y Literatura Coreanas",ko:"국어국문학",l:2,c:"전공"},
+{es:"Lengua y Literatura Francesas",ko:"불어불문학",l:2,c:"전공"},
+{es:"Lengua y Literatura Inglesas",ko:"영어영문학",l:2,c:"전공"},
+{es:"Lengua y Literatura Rusas",ko:"노어노문학",l:2,c:"전공"},
 {es:"Administración de Empresas",ko:"경영학",l:2,c:"전공"},
 {es:"Economía",ko:"경제학",l:2,c:"전공"},
 {es:"Sociología",ko:"사회학",l:2,c:"전공"},
 {es:"Psicología",ko:"심리학",l:2,c:"전공"},
-{es:"Filosofía",ko:"철학",l:2,c:"전공"},
-{es:"Lingüística",ko:"언어학",l:2,c:"전공"},
 {es:"Geografía",ko:"지리학",l:2,c:"전공"},
 {es:"Ciencias Políticas",ko:"정치학",l:2,c:"전공"},
+{es:"Ciencias Políticas y Diplomacia",ko:"정치외교학",l:2,c:"전공"},
+{es:"Bienestar Social",ko:"사회복지",l:2,c:"전공"},
+{es:"Comunicación",ko:"언론정보",l:2,c:"전공"},
+{es:"Física y Astronomía",ko:"물리천문",l:2,c:"전공"},
+{es:"Biología",ko:"생명과학",l:2,c:"전공"},
+{es:"Ciencias de la Tierra",ko:"지구과학",l:2,c:"전공"},
 {es:"Estadística",ko:"통계학",l:2,c:"전공"},
 {es:"Química",ko:"화학",l:2,c:"전공"},
-{es:"Biología",ko:"생명과학",l:2,c:"전공"},
-{es:"Medicina",ko:"의학",l:2,c:"전공"},
-{es:"Enfermería",ko:"간호학",l:2,c:"전공"},
-{es:"Arquitectura",ko:"건축학",l:2,c:"전공"},
-{es:"Diseño",ko:"디자인",l:2,c:"전공"},
+{es:"Ciencias de la Tierra y del Medio Ambiente",ko:"지구환경과학",l:2,c:"전공"},
+{es:"Economía Agrícola y Desarrollo Rural",ko:"농경제사회학",l:2,c:"전공"},
+{es:"Ingeniería Mecánica y Aeroespacial",ko:"기계항공공학",l:2,c:"전공"},
+{es:"Ingeniería Eléctrica e Informática",ko:"전기정보공학",l:2,c:"전공"},
 {es:"Ingeniería Informática",ko:"컴퓨터공학",l:2,c:"전공"},
-{es:"Ingeniería Mecánica",ko:"기계공학",l:2,c:"전공"},
-{es:"Historia",ko:"역사학",l:2,c:"전공"},
-{es:"Humanidades",ko:"인문학",l:2,c:"전공"},
+{es:"Ingeniería Química y Biológica",ko:"화학생물공학",l:2,c:"전공"},
+{es:"Ingeniería Naval y Oceánica",ko:"조선해양공학",l:2,c:"전공"},
+{es:"Ciencias Materiales",ko:"재료공학",l:2,c:"전공"},
+{es:"Ingeniería Civil y Ambiental",ko:"건설환경공학",l:2,c:"전공"},
+{es:"Bioquímica Aplicada",ko:"응용생물화학",l:2,c:"전공"},
+{es:"Biología Aplicada",ko:"응용생물전공",l:2,c:"전공"},
+{es:"Ciencias de las Plantas",ko:"식물생산과학부",l:2,c:"전공"},
+{es:"Biotecnología Alimentaria",ko:"식품생명공학",l:2,c:"전공"},
+{es:"Ciencias Forestales",ko:"산림과학",l:2,c:"전공"},
+{es:"Arquitectura del Paisaje",ko:"조경학",l:2,c:"전공"},
+{es:"Arquitectura",ko:"건축학",l:2,c:"전공"},
+{es:"Enfermería",ko:"간호학",l:2,c:"전공"},
+{es:"Medicina",ko:"의예과",l:2,c:"전공"},
+{es:"Medicina Veterinaria",ko:"수의예과",l:2,c:"전공"},
+{es:"Educación de Inglés",ko:"영어교육",l:2,c:"전공"},
+{es:"Educación Social",ko:"사회교육",l:2,c:"전공"},
+{es:"Educación de Biología",ko:"생물교육",l:2,c:"전공"},
+{es:"Educación de Matemáticas",ko:"수학교육",l:2,c:"전공"},
+{es:"Educación de Física",ko:"물리교육",l:2,c:"전공"},
+{es:"Educación Física",ko:"체육교육",l:2,c:"전공"},
+{es:"Ciencias del Consumidor",ko:"소비자학",l:2,c:"전공"},
+{es:"Desarrollo Infantil y Estudios Familiares",ko:"아동가족학",l:2,c:"전공"},
+{es:"Comida y Nutrición",ko:"식품영양학",l:2,c:"전공"},
+{es:"Diseño de Moda",ko:"의류학",l:2,c:"전공"},
+{es:"Diseño",ko:"디자인",l:2,c:"전공"},
+{es:"Arte de Cerámica",ko:"도예",l:2,c:"전공"},
+{es:"Artesanía Metálica",ko:"금속공예",l:2,c:"전공"},
+{es:"Diseño Gráfico",ko:"시각디자인",l:2,c:"전공"},
+{es:"Pintura Occidental",ko:"서양화",l:2,c:"전공"},
+{es:"Música Coreana",ko:"국악",l:2,c:"전공"},
+{es:"Departamento de Teatro y Cine",ko:"연극영화학",l:2,c:"전공"},
 {es:"Estudios Internacionales",ko:"국제학",l:2,c:"전공"},
 
 /* ---------- 3과 ---------- */
@@ -479,7 +541,29 @@ const DATA = [
 
 /* ============ 상태 ============ */
 const $ = id => document.getElementById(id);
-let cfg = {lessons:new Set([2,3,4]), cat:'전체', dir:'es2ko', mode:'mc', count:20};
+let cfg = {lessons:new Set([2,3,4]), cat:'전체', dir:'es2ko', mode:'mc', count:20, auto:false};
+
+/* ============ 발음 (TTS) ============ */
+const TTS = ('speechSynthesis' in window);
+let esVoice=null;
+function pickVoice(){
+  if(!TTS) return;
+  const vs=speechSynthesis.getVoices();
+  esVoice = vs.find(v=>/es[-_]?(ES)/i.test(v.lang)) || vs.find(v=>/es[-_]?(MX|US|419)/i.test(v.lang)) || vs.find(v=>/^es/i.test(v.lang)) || null;
+}
+if(TTS){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; }
+function speakEs(text){
+  if(!TTS||!text) return;
+  const clean=text.replace(/\(.*?\)/g,'').replace(/[~]/g,'').replace(/\s*\/\s*/g,', ').replace(/\.\.\./g,'').trim();
+  if(!clean) return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(clean);
+  u.lang='es-ES'; if(esVoice)u.voice=esVoice; u.rate=0.88; u.pitch=1;
+  const btn=$('speakBtn');
+  u.onstart=()=>btn&&btn.classList.add('playing');
+  u.onend=()=>btn&&btn.classList.remove('playing');
+  speechSynthesis.speak(u);
+}
 let queue=[], idx=0, correct=0, streak=0, maxStreak=0, wrong=[], answered=false;
 
 /* 분야 칩 만들기 */
@@ -508,6 +592,8 @@ $('catOpts').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if
 $('dirOpts').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if(!c)return; singleSelect($('dirOpts'),c); cfg.dir=c.dataset.dir; });
 $('modeOpts').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if(!c)return; singleSelect($('modeOpts'),c); cfg.mode=c.dataset.mode; });
 $('countOpts').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if(!c)return; singleSelect($('countOpts'),c); cfg.count=+c.dataset.count; });
+$('autoOpts').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if(!c)return; singleSelect($('autoOpts'),c); cfg.auto=c.dataset.auto==='1'; });
+$('speakBtn').addEventListener('click',()=>{ if(queue[idx]) speakEs(queue[idx].es); });
 
 /* ============ 게임 시작 ============ */
 function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
@@ -553,6 +639,10 @@ function render(){
   $('qword').textContent = q;
   $('qword').className = 'qword'+(isEs2Ko?'':' ko');
   $('qhint').textContent = '['+item.l+'과 · '+item.c+']';
+
+  const sb=$('speakBtn');
+  if(!TTS){ sb.classList.add('off'); sb.textContent='🔇 발음 미지원'; }
+  else { sb.classList.remove('off'); sb.textContent='🔊 발음 듣기'; if(cfg.auto) setTimeout(()=>speakEs(item.es),250); }
 
   $('feedback').textContent=''; $('feedback').className='feedback';
   $('nextBtn').classList.add('hidden');
@@ -685,9 +775,11 @@ function showResult(){
   if(wrong.length===0){ rv.innerHTML='<h3>완벽해요! 틀린 게 하나도 없어요 ✨</h3>'; $('retryWrong').style.display='none'; }
   else {
     $('retryWrong').style.display='block';
-    let h='<h3>❌ 틀린 단어 ('+wrong.length+')</h3>';
-    wrong.forEach(w=>{ h+='<div class="rrow"><span class="es">'+w.es+'</span><span class="ko">'+w.ko+'</span></div>'; });
+    let h='<h3>❌ 틀린 단어 ('+wrong.length+') · 🔊 눌러 발음 확인</h3>';
+    wrong.forEach((w,i)=>{ h+='<div class="rrow"><button class="rspeak" data-i="'+i+'">🔊</button><span class="es">'+w.es+'</span><span class="ko">'+w.ko+'</span></div>'; });
     rv.innerHTML=h;
+    const wl=wrong.slice();
+    rv.querySelectorAll('.rspeak').forEach(b=>b.onclick=()=>speakEs(wl[+b.dataset.i].es));
   }
 }
 $('retryWrong').addEventListener('click',()=>{
