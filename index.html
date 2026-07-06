@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>스페인어 단어 퀴즈 · 2·3·4과</title>
+<title>스페인어 단어 퀴즈 · 2·3·4·5과</title>
 <style>
   :root{
     --bg:#0f1226; --bg2:#171a35; --card:#1e2246; --card2:#262a52;
@@ -112,7 +112,7 @@
 <div class="wrap">
   <header>
     <h1><span class="flag">Español</span> 단어 퀴즈 🇪🇸</h1>
-    <p>KIIP 2·3·4과 · 단어와 표현 마스터하기</p>
+    <p>KIIP 2·3·4·5과 · 단어와 표현 마스터하기</p>
   </header>
 
   <!-- ================= START ================= -->
@@ -122,6 +122,7 @@
       <div class="chip on" data-lesson="2">2과</div>
       <div class="chip on" data-lesson="3">3과</div>
       <div class="chip on" data-lesson="4">4과</div>
+      <div class="chip on" data-lesson="5">5과</div>
     </div>
 
     <div class="label">🗂️ 분야 (전체 = 모두)</div>
@@ -180,7 +181,8 @@
 
     <!-- typing -->
     <div class="typewrap hidden" id="typewrap">
-      <input class="tinput" id="tinput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="정답 입력 후 Enter">
+      <input class="tinput" id="tinput" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="정답 입력">
+      <button class="btn" id="checkBtn" style="margin-top:10px">체크하기 ✓</button>
       <div class="kbd" id="accentHint"></div>
     </div>
 
@@ -537,11 +539,147 @@ const DATA = [
 {es:"el coche",ko:"자동차",l:4,c:"기본 명사"},
 {es:"rubio/a",ko:"금발의",l:4,c:"형용사"},
 {es:"talentoso/a",ko:"재능 있는",l:4,c:"형용사"},
+
+/* ---------- 5과 ---------- */
+{es:"hablar",ko:"말하다",l:5,c:"동사 -ar"},
+{es:"trabajar",ko:"일하다",l:5,c:"동사 -ar"},
+{es:"tomar",ko:"먹다, 마시다, (차를) 타다",l:5,c:"동사 -ar"},
+{es:"escuchar",ko:"듣다",l:5,c:"동사 -ar"},
+{es:"bailar",ko:"춤추다",l:5,c:"동사 -ar"},
+{es:"cantar",ko:"노래하다",l:5,c:"동사 -ar"},
+{es:"estudiar",ko:"공부하다",l:5,c:"동사 -ar"},
+{es:"practicar",ko:"연습하다",l:5,c:"동사 -ar"},
+{es:"nadar",ko:"수영하다",l:5,c:"동사 -ar"},
+{es:"dibujar",ko:"그리다",l:5,c:"동사 -ar"},
+{es:"cenar",ko:"저녁식사하다",l:5,c:"동사 -ar"},
+{es:"comprar",ko:"사다",l:5,c:"동사 -ar"},
+{es:"desayunar",ko:"아침식사하다",l:5,c:"동사 -ar"},
+{es:"manejar",ko:"운전하다, (기계를) 다루다",l:5,c:"동사 -ar"},
+{es:"necesitar",ko:"필요하다",l:5,c:"동사 -ar"},
+{es:"tocar",ko:"만지다, 연주하다",l:5,c:"동사 -ar"},
+{es:"terminar",ko:"끝내다",l:5,c:"동사 -ar"},
+{es:"caminar",ko:"걷다",l:5,c:"동사 -ar"},
+{es:"cocinar",ko:"요리하다",l:5,c:"동사 -ar"},
+{es:"preparar",ko:"준비하다",l:5,c:"동사 -ar"},
+{es:"mirar",ko:"보다",l:5,c:"동사 -ar"},
+{es:"llamar",ko:"부르다, 전화하다",l:5,c:"동사 -ar"},
+{es:"visitar",ko:"방문하다",l:5,c:"동사 -ar"},
+{es:"comer",ko:"먹다",l:5,c:"동사 -er·-ir"},
+{es:"aprender",ko:"배우다",l:5,c:"동사 -er·-ir"},
+{es:"beber",ko:"마시다",l:5,c:"동사 -er·-ir"},
+{es:"comprender",ko:"이해하다",l:5,c:"동사 -er·-ir"},
+{es:"correr",ko:"달리다",l:5,c:"동사 -er·-ir"},
+{es:"vender",ko:"팔다",l:5,c:"동사 -er·-ir"},
+{es:"leer",ko:"읽다",l:5,c:"동사 -er·-ir"},
+{es:"vivir",ko:"살다",l:5,c:"동사 -er·-ir"},
+{es:"escribir",ko:"쓰다",l:5,c:"동사 -er·-ir"},
+{es:"abrir",ko:"열다",l:5,c:"동사 -er·-ir"},
+{es:"asistir (a)",ko:"출석하다, 참석하다",l:5,c:"동사 -er·-ir"},
+{es:"decidir",ko:"결정하다",l:5,c:"동사 -er·-ir"},
+{es:"recibir",ko:"받다",l:5,c:"동사 -er·-ir"},
+{es:"ir",ko:"가다",l:5,c:"불규칙 동사"},
+{es:"ir a + 동사원형",ko:"~하러 가다, ~할 것이다",l:5,c:"불규칙 동사"},
+{es:"ir de excursión",ko:"소풍 가다",l:5,c:"불규칙 동사"},
+{es:"hacer",ko:"하다, 만들다",l:5,c:"불규칙 동사"},
+{es:"salir",ko:"나가다",l:5,c:"불규칙 동사"},
+{es:"poner",ko:"놓다",l:5,c:"불규칙 동사"},
+{es:"dar",ko:"주다",l:5,c:"불규칙 동사"},
+{es:"ver",ko:"보다",l:5,c:"불규칙 동사"},
+{es:"venir",ko:"오다",l:5,c:"불규칙 동사"},
+{es:"tener que + 동사원형",ko:"~해야 한다",l:5,c:"불규칙 동사"},
+{es:"necesitar + 동사원형",ko:"~할 필요가 있다",l:5,c:"불규칙 동사"},
+{es:"siempre",ko:"항상",l:5,c:"빈도 부사"},
+{es:"normalmente",ko:"보통은",l:5,c:"빈도 부사"},
+{es:"frecuentemente",ko:"자주, 빈번히",l:5,c:"빈도 부사"},
+{es:"muchas veces",ko:"여러 차례",l:5,c:"빈도 부사"},
+{es:"a veces",ko:"때때로",l:5,c:"빈도 부사"},
+{es:"generalmente",ko:"일반적으로, 보통",l:5,c:"빈도 부사"},
+{es:"a menudo",ko:"자주",l:5,c:"빈도 부사"},
+{es:"pocas veces",ko:"거의 ~하지 않다",l:5,c:"빈도 부사"},
+{es:"nunca",ko:"결코 ~않다",l:5,c:"빈도 부사"},
+{es:"una vez",ko:"한 번",l:5,c:"빈도 부사"},
+{es:"dos veces",ko:"두 번",l:5,c:"빈도 부사"},
+{es:"una vez a la semana",ko:"일주일에 한 번",l:5,c:"빈도 부사"},
+{es:"una vez al mes",ko:"한 달에 한 번",l:5,c:"빈도 부사"},
+{es:"todos los días",ko:"매일",l:5,c:"빈도 부사"},
+{es:"cada",ko:"매 ~마다",l:5,c:"빈도 부사"},
+{es:"también",ko:"역시, 또한",l:5,c:"빈도 부사"},
+{es:"tampoco",ko:"~도 아니다",l:5,c:"빈도 부사"},
+{es:"rápido / rápidamente",ko:"빠르게",l:5,c:"부사"},
+{es:"solo",ko:"단지, 오직",l:5,c:"부사"},
+{es:"mucho",ko:"많이",l:5,c:"부사"},
+{es:"bien",ko:"잘",l:5,c:"부사"},
+{es:"muy",ko:"매우",l:5,c:"부사"},
+{es:"hoy",ko:"오늘",l:5,c:"시간 표현"},
+{es:"mañana",ko:"내일",l:5,c:"시간 표현"},
+{es:"pasado mañana",ko:"모레",l:5,c:"시간 표현"},
+{es:"ayer",ko:"어제",l:5,c:"시간 표현"},
+{es:"anteayer",ko:"그제",l:5,c:"시간 표현"},
+{es:"por la mañana",ko:"아침에",l:5,c:"시간 표현"},
+{es:"por la tarde",ko:"오후에",l:5,c:"시간 표현"},
+{es:"por la noche",ko:"저녁에, 밤에",l:5,c:"시간 표현"},
+{es:"antes de",ko:"~ 전에",l:5,c:"시간 표현"},
+{es:"después de",ko:"~ 후에",l:5,c:"시간 표현"},
+{es:"el fin de semana",ko:"주말",l:5,c:"시간 표현"},
+{es:"este fin de semana",ko:"이번 주말",l:5,c:"시간 표현"},
+{es:"lunes",ko:"월요일",l:5,c:"요일"},
+{es:"martes",ko:"화요일",l:5,c:"요일"},
+{es:"miércoles",ko:"수요일",l:5,c:"요일"},
+{es:"jueves",ko:"목요일",l:5,c:"요일"},
+{es:"viernes",ko:"금요일",l:5,c:"요일"},
+{es:"sábado",ko:"토요일",l:5,c:"요일"},
+{es:"domingo",ko:"일요일",l:5,c:"요일"},
+{es:"¿Qué día es hoy?",ko:"오늘 무슨 요일이야?",l:5,c:"요일"},
+{es:"mi",ko:"나의",l:5,c:"소유사"},
+{es:"tu",ko:"너의",l:5,c:"소유사"},
+{es:"su",ko:"그의/그녀의/당신의",l:5,c:"소유사"},
+{es:"nuestro/a",ko:"우리의",l:5,c:"소유사"},
+{es:"vuestro/a",ko:"너희의",l:5,c:"소유사"},
+{es:"el mar",ko:"바다",l:5,c:"5과 명사"},
+{es:"la piscina",ko:"수영장",l:5,c:"5과 명사"},
+{es:"el periódico",ko:"신문",l:5,c:"5과 명사"},
+{es:"el parque",ko:"공원",l:5,c:"5과 명사"},
+{es:"la revista",ko:"잡지",l:5,c:"5과 명사"},
+{es:"la carta",ko:"편지",l:5,c:"5과 명사"},
+{es:"el correo electrónico",ko:"이메일",l:5,c:"5과 명사"},
+{es:"la ventana",ko:"창문",l:5,c:"5과 명사"},
+{es:"el regalo",ko:"선물",l:5,c:"5과 명사"},
+{es:"el cumpleaños",ko:"생일",l:5,c:"5과 명사"},
+{es:"la clase",ko:"수업",l:5,c:"5과 명사"},
+{es:"la guitarra",ko:"기타",l:5,c:"5과 명사"},
+{es:"el piano",ko:"피아노",l:5,c:"5과 명사"},
+{es:"el arroz",ko:"쌀, 밥",l:5,c:"5과 명사"},
+{es:"el pan",ko:"빵",l:5,c:"5과 명사"},
+{es:"la leche",ko:"우유",l:5,c:"5과 명사"},
+{es:"el café",ko:"커피",l:5,c:"5과 명사"},
+{es:"el té",ko:"차",l:5,c:"5과 명사"},
+{es:"el jugo de naranja",ko:"오렌지 주스",l:5,c:"5과 명사"},
+{es:"el agua",ko:"물",l:5,c:"5과 명사"},
+{es:"el helado",ko:"아이스크림",l:5,c:"5과 명사"},
+{es:"la ciudad",ko:"도시",l:5,c:"5과 명사"},
+{es:"el campo",ko:"시골",l:5,c:"5과 명사"},
+{es:"el barrio",ko:"동네",l:5,c:"5과 명사"},
+{es:"el autobús",ko:"버스",l:5,c:"5과 명사"},
+{es:"el taxi",ko:"택시",l:5,c:"5과 명사"},
+{es:"el carro",ko:"자동차 (중남미)",l:5,c:"5과 명사"},
+{es:"la licencia / el permiso",ko:"운전면허증",l:5,c:"5과 명사"},
+{es:"la especialidad",ko:"전공",l:5,c:"5과 명사"},
+{es:"la tarea",ko:"숙제, 과제",l:5,c:"5과 명사"},
+{es:"la palabra",ko:"단어",l:5,c:"5과 명사"},
+{es:"la rutina diaria",ko:"일상, 하루 일과",l:5,c:"5과 명사"},
+{es:"la vida cotidiana",ko:"일상 생활",l:5,c:"5과 명사"},
+{es:"difícil",ko:"어려운",l:5,c:"5과 명사"},
+{es:"interesante",ko:"흥미로운",l:5,c:"5과 명사"},
+{es:"¿Qué haces hoy?",ko:"너 오늘 뭐 해?",l:5,c:"5과 표현"},
+{es:"¿Con qué frecuencia...?",ko:"얼마나 자주 ~해?",l:5,c:"5과 표현"},
+{es:"¿Cuántas veces comes al día?",ko:"하루에 몇 번 먹어?",l:5,c:"5과 표현"},
+{es:"tres veces al día",ko:"하루에 세 번",l:5,c:"5과 표현"},
+{es:"Voy al cine",ko:"영화관에 가",l:5,c:"5과 표현"},
 ];
 
 /* ============ 상태 ============ */
 const $ = id => document.getElementById(id);
-let cfg = {lessons:new Set([2,3,4]), cat:'전체', dir:'es2ko', mode:'mc', count:20, auto:false};
+let cfg = {lessons:new Set([2,3,4,5]), cat:'전체', dir:'es2ko', mode:'mc', count:20, auto:false};
 
 /* ============ 발음 (TTS) ============ */
 const TTS = ('speechSynthesis' in window);
@@ -704,13 +842,16 @@ function acceptable(input, item, isEs2Ko){
 function renderType(item,answer,isEs2Ko){
   const w=$('typewrap'); w.classList.remove('hidden');
   const inp=$('tinput'); inp.value=''; inp.disabled=false;
+  const cb=$('checkBtn'); cb.classList.remove('hidden'); cb.textContent='체크하기 ✓';
   $('accentHint').textContent = isEs2Ko ? '' : '악센트(á é í ó ú ñ)는 없어도 정답 처리돼요';
   setTimeout(()=>inp.focus(),50);
-  inp.onkeydown=(e)=>{ if(e.key==='Enter'){ if(!answered) submitType(item,answer,isEs2Ko); else next(); } };
+  cb.onclick=()=>{ if(!answered) submitType(item,answer,isEs2Ko); else next(); };
+  inp.onkeydown=(e)=>{ if(e.key==='Enter'){ e.preventDefault(); if(!answered) submitType(item,answer,isEs2Ko); else next(); } };
 }
 function submitType(item,answer,isEs2Ko){
   if(answered)return; answered=true;
   const inp=$('tinput'); inp.disabled=true;
+  $('checkBtn').classList.add('hidden');
   const ok=acceptable(inp.value,item,isEs2Ko);
   finish(ok,answer);
 }
