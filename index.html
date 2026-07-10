@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>스페인어 단어 퀴즈 · 2·3·4·5과</title>
+<title>스페인어 단어 퀴즈 · 2~6과</title>
 <style>
   :root{
     --bg:#0f1226; --bg2:#171a35; --card:#1e2246; --card2:#262a52;
@@ -112,7 +112,7 @@
 <div class="wrap">
   <header>
     <h1><span class="flag">Español</span> 단어 퀴즈 🇪🇸</h1>
-    <p>KIIP 2·3·4·5과 · 단어와 표현 마스터하기</p>
+    <p>KIIP 2~6과 · 단어와 표현 마스터하기</p>
   </header>
 
   <!-- ================= START ================= -->
@@ -123,6 +123,7 @@
       <div class="chip on" data-lesson="3">3과</div>
       <div class="chip on" data-lesson="4">4과</div>
       <div class="chip on" data-lesson="5">5과</div>
+      <div class="chip on" data-lesson="6">6과</div>
     </div>
 
     <div class="label">🗂️ 분야 (전체 = 모두)</div>
@@ -675,11 +676,122 @@ const DATA = [
 {es:"¿Cuántas veces comes al día?",ko:"하루에 몇 번 먹어?",l:5,c:"5과 표현"},
 {es:"tres veces al día",ko:"하루에 세 번",l:5,c:"5과 표현"},
 {es:"Voy al cine",ko:"영화관에 가",l:5,c:"5과 표현"},
+
+/* ---------- 6과 ---------- */
+{es:"gustar",ko:"좋아하다 (~에게 ~가 좋다)",l:6,c:"gustar 동사"},
+{es:"encantar",ko:"매우 좋아하다",l:6,c:"gustar 동사"},
+{es:"Me gusta ~",ko:"나는 ~를 좋아한다",l:6,c:"gustar 동사"},
+{es:"Te gusta ~",ko:"너는 ~를 좋아한다",l:6,c:"gustar 동사"},
+{es:"Le gusta ~",ko:"그/그녀/당신은 ~를 좋아한다",l:6,c:"gustar 동사"},
+{es:"Nos gusta ~",ko:"우리는 ~를 좋아한다",l:6,c:"gustar 동사"},
+{es:"Les gusta ~",ko:"그들/당신들은 ~를 좋아한다",l:6,c:"gustar 동사"},
+{es:"me",ko:"나에게 (간접목적격)",l:6,c:"gustar 동사"},
+{es:"te",ko:"너에게 (간접목적격)",l:6,c:"gustar 동사"},
+{es:"le",ko:"그에게/그녀에게/당신에게",l:6,c:"gustar 동사"},
+{es:"nos",ko:"우리에게 (간접목적격)",l:6,c:"gustar 동사"},
+{es:"os",ko:"너희에게 (간접목적격)",l:6,c:"gustar 동사"},
+{es:"les",ko:"그들에게/당신들에게",l:6,c:"gustar 동사"},
+{es:"mí",ko:"나 (전치사 뒤)",l:6,c:"전치격 대명사"},
+{es:"ti",ko:"너 (전치사 뒤)",l:6,c:"전치격 대명사"},
+{es:"conmigo",ko:"나와 함께",l:6,c:"전치격 대명사"},
+{es:"contigo",ko:"너와 함께",l:6,c:"전치격 대명사"},
+{es:"sin",ko:"~ 없이",l:6,c:"전치격 대명사"},
+{es:"con",ko:"~와 함께",l:6,c:"전치격 대명사"},
+{es:"querer",ko:"원하다",l:6,c:"동사 e→ie"},
+{es:"pensar",ko:"생각하다",l:6,c:"동사 e→ie"},
+{es:"preferir",ko:"선호하다",l:6,c:"동사 e→ie"},
+{es:"comenzar / empezar",ko:"시작하다",l:6,c:"동사 e→ie"},
+{es:"cerrar",ko:"닫다",l:6,c:"동사 e→ie"},
+{es:"entender",ko:"이해하다",l:6,c:"동사 e→ie"},
+{es:"perder",ko:"잃다",l:6,c:"동사 e→ie"},
+{es:"mentir",ko:"속이다, 거짓말하다",l:6,c:"동사 e→ie"},
+{es:"sentir",ko:"느끼다, 유감이다",l:6,c:"동사 e→ie"},
+{es:"recomendar",ko:"추천하다, 권하다",l:6,c:"동사 e→ie"},
+{es:"nevar",ko:"눈이 오다",l:6,c:"동사 e→ie"},
+{es:"Lo siento",ko:"미안합니다",l:6,c:"동사 e→ie"},
+{es:"poder",ko:"~할 수 있다",l:6,c:"동사 o→ue"},
+{es:"dormir",ko:"자다",l:6,c:"동사 o→ue"},
+{es:"volver",ko:"돌아오다",l:6,c:"동사 o→ue"},
+{es:"encontrar",ko:"만나다, 찾다",l:6,c:"동사 o→ue"},
+{es:"almorzar",ko:"점심 먹다",l:6,c:"동사 o→ue"},
+{es:"costar",ko:"(값이) 나가다, 들다",l:6,c:"동사 o→ue"},
+{es:"recordar",ko:"기억하다",l:6,c:"동사 o→ue"},
+{es:"jugar",ko:"놀다, (경기를) 하다",l:6,c:"동사 o→ue"},
+{es:"llover",ko:"비가 오다",l:6,c:"동사 o→ue"},
+{es:"morir",ko:"죽다",l:6,c:"동사 o→ue"},
+{es:"probar",ko:"맛보다, 시험하다",l:6,c:"동사 o→ue"},
+{es:"poder + 동사원형",ko:"~할 수 있다 (can)",l:6,c:"동사 o→ue"},
+{es:"querer + 동사원형",ko:"~하고 싶다 (want to)",l:6,c:"동사 e→ie"},
+{es:"para",ko:"~를 위하여, ~까지, ~를 향해",l:6,c:"para·por"},
+{es:"por",ko:"~때문에, ~로(수단), ~을 통해, ~쯤",l:6,c:"para·por"},
+{es:"por teléfono",ko:"전화로",l:6,c:"para·por"},
+{es:"por avión",ko:"비행기 편으로",l:6,c:"para·por"},
+{es:"por ciento",ko:"퍼센트 (%)",l:6,c:"para·por"},
+{es:"el jugo",ko:"주스",l:6,c:"6과 명사"},
+{es:"el cereal",ko:"시리얼",l:6,c:"6과 명사"},
+{es:"la fruta",ko:"과일",l:6,c:"6과 명사"},
+{es:"el pollo",ko:"닭, 치킨",l:6,c:"6과 명사"},
+{es:"el huevo",ko:"달걀",l:6,c:"6과 명사"},
+{es:"la pimienta",ko:"후추",l:6,c:"6과 명사"},
+{es:"la sal",ko:"소금",l:6,c:"6과 명사"},
+{es:"la cena",ko:"저녁 식사",l:6,c:"6과 명사"},
+{es:"la carne",ko:"고기",l:6,c:"6과 명사"},
+{es:"el queso",ko:"치즈",l:6,c:"6과 명사"},
+{es:"el pan tostado",ko:"토스트",l:6,c:"6과 명사"},
+{es:"la sopa",ko:"수프",l:6,c:"6과 명사"},
+{es:"la galleta",ko:"쿠키, 과자",l:6,c:"6과 명사"},
+{es:"la papa",ko:"감자",l:6,c:"6과 명사"},
+{es:"el almuerzo",ko:"점심 식사",l:6,c:"6과 명사"},
+{es:"el vegetal",ko:"채소",l:6,c:"6과 명사"},
+{es:"el deporte",ko:"스포츠",l:6,c:"6과 명사"},
+{es:"la discoteca",ko:"디스코텍, 클럽",l:6,c:"6과 명사"},
+{es:"el vino",ko:"포도주, 와인",l:6,c:"6과 명사"},
+{es:"la cerveza",ko:"맥주",l:6,c:"6과 명사"},
+{es:"el taco",ko:"타코",l:6,c:"6과 명사"},
+{es:"el fútbol",ko:"축구",l:6,c:"6과 명사"},
+{es:"el tenis",ko:"테니스",l:6,c:"6과 명사"},
+{es:"el béisbol",ko:"야구",l:6,c:"6과 명사"},
+{es:"el baloncesto",ko:"농구",l:6,c:"6과 명사"},
+{es:"la canción",ko:"노래",l:6,c:"6과 명사"},
+{es:"la película",ko:"영화",l:6,c:"6과 명사"},
+{es:"la serie",ko:"연속극, 드라마",l:6,c:"6과 명사"},
+{es:"la fiesta",ko:"파티",l:6,c:"6과 명사"},
+{es:"el bar",ko:"바",l:6,c:"6과 명사"},
+{es:"las tapas",ko:"타파스 (안주)",l:6,c:"6과 명사"},
+{es:"el celular",ko:"휴대전화",l:6,c:"6과 명사"},
+{es:"la tableta",ko:"태블릿",l:6,c:"6과 명사"},
+{es:"la computadora portátil",ko:"노트북",l:6,c:"6과 명사"},
+{es:"el verano",ko:"여름",l:6,c:"6과 명사"},
+{es:"el invierno",ko:"겨울",l:6,c:"6과 명사"},
+{es:"la reunión",ko:"회의",l:6,c:"6과 명사"},
+{es:"el compromiso",ko:"약속, 선약",l:6,c:"6과 명사"},
+{es:"el abuelo / la abuela",ko:"할아버지 / 할머니",l:6,c:"6과 명사"},
+{es:"el nieto / la nieta",ko:"손자 / 손녀",l:6,c:"6과 명사"},
+{es:"la comida italiana",ko:"이탈리아 음식",l:6,c:"6과 명사"},
+{es:"la música clásica",ko:"클래식 음악",l:6,c:"6과 명사"},
+{es:"viajar",ko:"여행하다",l:6,c:"6과 표현"},
+{es:"descansar",ko:"쉬다",l:6,c:"6과 표현"},
+{es:"pedir",ko:"요청하다, 주문하다",l:6,c:"6과 표현"},
+{es:"traer",ko:"가져오다",l:6,c:"6과 표현"},
+{es:"usar / utilizar",ko:"사용하다",l:6,c:"6과 표현"},
+{es:"fumar",ko:"담배 피우다",l:6,c:"6과 표현"},
+{es:"sacar fotos",ko:"사진 찍다",l:6,c:"6과 표현"},
+{es:"parecer",ko:"~처럼 보이다",l:6,c:"6과 표현"},
+{es:"¿Qué te gusta hacer?",ko:"너 뭐 하기 좋아해?",l:6,c:"6과 표현"},
+{es:"Me gustas tú",ko:"난 네가 좋아",l:6,c:"6과 표현"},
+{es:"Te quiero",ko:"널 사랑해",l:6,c:"6과 표현"},
+{es:"¿Puedo...?",ko:"~해도 돼요?",l:6,c:"6과 표현"},
+{es:"¿Con quién...?",ko:"누구와 함께 ~?",l:6,c:"6과 표현"},
+{es:"¿Cómo vienes a la universidad?",ko:"학교에 어떻게 오니?",l:6,c:"6과 표현"},
+{es:"¡Cómo no!",ko:"물론이지!",l:6,c:"6과 표현"},
+{es:"¿Qué te parece?",ko:"네 생각엔 어때?",l:6,c:"6과 표현"},
+{es:"¿Quiénes?",ko:"누구들? (복수)",l:6,c:"6과 표현"},
+{es:"el Día de Muertos",ko:"망자의 날",l:6,c:"6과 표현"},
 ];
 
 /* ============ 상태 ============ */
 const $ = id => document.getElementById(id);
-let cfg = {lessons:new Set([2,3,4,5]), cat:'전체', dir:'es2ko', mode:'mc', count:20, auto:false};
+let cfg = {lessons:new Set([2,3,4,5,6]), cat:'전체', dir:'es2ko', mode:'mc', count:20, auto:false};
 
 /* ============ 발음 (TTS) ============ */
 const TTS = ('speechSynthesis' in window);
