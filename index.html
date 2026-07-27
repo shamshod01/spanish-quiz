@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>스페인어 단어 퀴즈 · 2~9과</title>
+<title>스페인어 단어 퀴즈 · 2~10과</title>
 <style>
   :root{
     --bg:#0f1226; --bg2:#171a35; --card:#1e2246; --card2:#262a52;
@@ -112,7 +112,7 @@
 <div class="wrap">
   <header>
     <h1><span class="flag">Español</span> 단어 퀴즈 🇪🇸</h1>
-    <p>KIIP 2~9과 · 단어와 표현 마스터하기</p>
+    <p>KIIP 2~10과 · 단어와 표현 마스터하기</p>
   </header>
 
   <!-- ================= START ================= -->
@@ -127,6 +127,7 @@
       <div class="chip on" data-lesson="7">7과</div>
       <div class="chip on" data-lesson="8">8과</div>
       <div class="chip on" data-lesson="9">9과</div>
+      <div class="chip on" data-lesson="10">10과</div>
     </div>
 
     <div class="label">🗂️ 분야 (전체 = 모두)</div>
@@ -1126,11 +1127,103 @@ const DATA = [
 {es:"el primer plato",ko:"첫 번째 요리",l:9,c:"9과 표현"},
 {es:"el segundo plato",ko:"두 번째 요리",l:9,c:"9과 표현"},
 {es:"el postre",ko:"후식",l:9,c:"9과 표현"},
+
+{es:"hablé",ko:"나는 말했다 (hablar 단순과거 1인칭단수)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"hablaste",ko:"너는 말했다 (hablar 단순과거)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"habló",ko:"그/그녀/당신은 말했다 (hablar 단순과거)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"hablamos",ko:"우리는 말했다 (hablar 단순과거)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"hablaron",ko:"그들/당신들은 말했다 (hablar 단순과거)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"comí",ko:"나는 먹었다 (comer 단순과거 1인칭단수)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"comiste",ko:"너는 먹었다 (comer 단순과거)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"comió",ko:"그/그녀/당신은 먹었다 (comer 단순과거)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"comimos",ko:"우리는 먹었다 (comer 단순과거)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"comieron",ko:"그들/당신들은 먹었다 (comer 단순과거)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"viví",ko:"나는 살았다 (vivir 단순과거 1인칭단수)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"viviste",ko:"너는 살았다 (vivir 단순과거)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"vivió",ko:"그/그녀/당신은 살았다 (vivir 단순과거)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"vivimos",ko:"우리는 살았다 (vivir 단순과거)",l:10,c:"10과 단순과거 규칙동사"},
+{es:"vivieron",ko:"그들/당신들은 살았다 (vivir 단순과거)",l:10,c:"10과 단순과거 규칙동사"},
+
+{es:"fui",ko:"나는 갔다/였다 (ser·ir 단순과거 1인칭단수)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"fue",ko:"그/그녀/당신은 갔다/였다 (ser·ir 단순과거)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"fueron",ko:"그들/당신들은 갔다/였다 (ser·ir 단순과거)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"vi",ko:"나는 보았다 (ver 단순과거 1인칭단수)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"vio",ko:"그/그녀/당신은 보았다 (ver 단순과거)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"di",ko:"나는 주었다 (dar 단순과거 1인칭단수)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"dio",ko:"그/그녀/당신은 주었다 (dar 단순과거)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"estuve",ko:"나는 있었다 (estar 단순과거 1인칭단수)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"estuvo",ko:"그/그녀/당신은 있었다 (estar 단순과거)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"tuve",ko:"나는 가졌다 (tener 단순과거 1인칭단수)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"tuvo",ko:"그/그녀/당신은 가졌다 (tener 단순과거)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"hice",ko:"나는 했다 (hacer 단순과거 1인칭단수)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"hizo",ko:"그/그녀/당신은 했다 (hacer 단순과거)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"supe",ko:"나는 알게 되었다 (saber 단순과거 1인칭단수)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"supo",ko:"그/그녀/당신은 알게 되었다 (saber 단순과거)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"dije",ko:"나는 말했다 (decir 단순과거 1인칭단수)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"dijo",ko:"그/그녀/당신은 말했다 (decir 단순과거)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"vine",ko:"나는 왔다 (venir 단순과거 1인칭단수)",l:10,c:"10과 단순과거 불규칙동사"},
+{es:"vino",ko:"그/그녀/당신은 왔다 (venir 단순과거)",l:10,c:"10과 단순과거 불규칙동사"},
+
+{es:"anoche",ko:"어젯밤",l:10,c:"10과 시간부사"},
+{es:"ayer",ko:"어제",l:10,c:"10과 시간부사"},
+{es:"anteayer",ko:"그저께",l:10,c:"10과 시간부사"},
+{es:"el jueves pasado",ko:"지난 목요일",l:10,c:"10과 시간부사"},
+{es:"el año pasado",ko:"작년",l:10,c:"10과 시간부사"},
+{es:"la semana pasada",ko:"지난주",l:10,c:"10과 시간부사"},
+{es:"el fin de semana pasado",ko:"지난 주말",l:10,c:"10과 시간부사"},
+{es:"hace tres meses",ko:"3개월 전에",l:10,c:"10과 시간부사"},
+{es:"el otro día",ko:"며칠 전에",l:10,c:"10과 시간부사"},
+
+{es:"toqué",ko:"나는 연주했다 (tocar 단순과거, c→qu 철자변화)",l:10,c:"10과 철자변화 동사"},
+{es:"llegué",ko:"나는 도착했다 (llegar 단순과거, g→gu 철자변화)",l:10,c:"10과 철자변화 동사"},
+{es:"empecé",ko:"나는 시작했다 (empezar 단순과거, z→c 철자변화)",l:10,c:"10과 철자변화 동사"},
+{es:"busqué",ko:"나는 찾았다 (buscar 단순과거, c→qu 철자변화)",l:10,c:"10과 철자변화 동사"},
+{es:"jugué",ko:"나는 놀았다/경기했다 (jugar 단순과거, g→gu 철자변화)",l:10,c:"10과 철자변화 동사"},
+
+{es:"Te queda bien.",ko:"너에게 잘 어울린다.",l:10,c:"10과 표현"},
+{es:"Te quedan bien los pantalones.",ko:"너한테 바지가 잘 어울린다.",l:10,c:"10과 표현"},
+{es:"Merece/Vale la pena + 동사원형",ko:"~하는 것이 가치가 있다",l:10,c:"10과 표현"},
+{es:"Me lo pasé muy bien.",ko:"나 아주 좋은 시간을 보냈어.",l:10,c:"10과 표현"},
+{es:"¿Cómo fue tu viaje?",ko:"여행 어땠니?",l:10,c:"10과 표현"},
+{es:"Te lo mereces.",ko:"넌 그럴 자격이 있어.",l:10,c:"10과 표현"},
+{es:"ir de compras",ko:"쇼핑하러 가다",l:10,c:"10과 표현"},
+{es:"ir de pinchos",ko:"핀쵸 먹으러 가다",l:10,c:"10과 표현"},
+{es:"ir de tapas",ko:"타파스 먹으러 가다",l:10,c:"10과 표현"},
+{es:"ir de viaje",ko:"여행하러 가다",l:10,c:"10과 표현"},
+{es:"ir de excursión",ko:"소풍 가다",l:10,c:"10과 표현"},
+{es:"cenar fuera",ko:"저녁에 외식하다",l:10,c:"10과 표현"},
+{es:"jugar al ajedrez",ko:"체스를 두다",l:10,c:"10과 표현"},
+{es:"jugar al baloncesto",ko:"농구를 하다",l:10,c:"10과 표현"},
+{es:"visitar a (사람)",ko:"~를 방문하다 (사람 목적어는 a 필요)",l:10,c:"10과 표현"},
+{es:"asistir a",ko:"~에 참석하다",l:10,c:"10과 표현"},
+{es:"llegar a",ko:"~에 도착하다",l:10,c:"10과 표현"},
+{es:"viajar a (구체적 장소)",ko:"~로 여행가다 (구체적 목적지)",l:10,c:"10과 표현"},
+{es:"viajar por (지역 전역)",ko:"~를 두루 여행하다",l:10,c:"10과 표현"},
+{es:"sacar el billete",ko:"표를 사다",l:10,c:"10과 표현"},
+{es:"por mi cuenta",ko:"자유 여행으로, 내 마음대로",l:10,c:"10과 표현"},
+
+{es:"el billete de ida y vuelta",ko:"왕복표",l:10,c:"10과 여행"},
+{es:"el billete de ida",ko:"편도표",l:10,c:"10과 여행"},
+{es:"el vuelo con escalas",ko:"경유편",l:10,c:"10과 여행"},
+{es:"el vuelo directo",ko:"직항편",l:10,c:"10과 여행"},
+{es:"la habitación doble",ko:"더블룸",l:10,c:"10과 여행"},
+{es:"la habitación individual",ko:"싱글룸",l:10,c:"10과 여행"},
+{es:"la media pensión",ko:"조식+중식 또는 석식 포함 숙박",l:10,c:"10과 여행"},
+{es:"la pensión completa",ko:"삼식 모두 포함된 숙박",l:10,c:"10과 여행"},
+{es:"todo incluido",ko:"모든 것 포함 (올인클루시브)",l:10,c:"10과 여행"},
+{es:"el visado",ko:"비자",l:10,c:"10과 여행"},
+{es:"la aduana",ko:"세관",l:10,c:"10과 여행"},
+{es:"el control de pasaportes",ko:"여권심사대",l:10,c:"10과 여행"},
+{es:"la maleta",ko:"여행 가방, 캐리어",l:10,c:"10과 여행"},
+{es:"perder las maletas",ko:"짐을 잃어버리다",l:10,c:"10과 여행"},
+{es:"reservar",ko:"예약하다",l:10,c:"10과 여행"},
+{es:"el billete de oferta",ko:"특가 항공권",l:10,c:"10과 여행"},
+{es:"el alojamiento",ko:"숙소",l:10,c:"10과 여행"},
 ];
 
 /* ============ 상태 ============ */
 const $ = id => document.getElementById(id);
-let cfg = {lessons:new Set([2,3,4,5,6,7,8,9]), cat:'전체', dir:'es2ko', mode:'mc', count:20, auto:false};
+let cfg = {lessons:new Set([2,3,4,5,6,7,8,9,10]), cat:'전체', dir:'es2ko', mode:'mc', count:20, auto:false};
 
 /* ============ 발음 (TTS) ============ */
 const TTS = ('speechSynthesis' in window);
