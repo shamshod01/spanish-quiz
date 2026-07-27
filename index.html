@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>스페인어 단어 퀴즈 · 2~6, 8과</title>
+<title>스페인어 단어 퀴즈 · 2~8과</title>
 <style>
   :root{
     --bg:#0f1226; --bg2:#171a35; --card:#1e2246; --card2:#262a52;
@@ -112,7 +112,7 @@
 <div class="wrap">
   <header>
     <h1><span class="flag">Español</span> 단어 퀴즈 🇪🇸</h1>
-    <p>KIIP 2~6, 8과 · 단어와 표현 마스터하기</p>
+    <p>KIIP 2~8과 · 단어와 표현 마스터하기</p>
   </header>
 
   <!-- ================= START ================= -->
@@ -124,6 +124,7 @@
       <div class="chip on" data-lesson="4">4과</div>
       <div class="chip on" data-lesson="5">5과</div>
       <div class="chip on" data-lesson="6">6과</div>
+      <div class="chip on" data-lesson="7">7과</div>
       <div class="chip on" data-lesson="8">8과</div>
     </div>
 
@@ -926,11 +927,86 @@ const DATA = [
 {es:"Las Fallas",ko:"라스 파야스 축제",l:8,c:"8과 문화"},
 {es:"La Tomatina",ko:"라 토마티나 (토마토 축제)",l:8,c:"8과 문화"},
 {es:"el Día de la Independencia",ko:"독립기념일",l:8,c:"8과 문화"},
+
+{es:"pensar",ko:"생각하다",l:7,c:"7과 e→ie 동사"},
+{es:"pienso",ko:"나는 생각한다 (pensar 1인칭단수)",l:7,c:"7과 e→ie 동사"},
+{es:"piensas",ko:"너는 생각한다 (pensar 2인칭단수)",l:7,c:"7과 e→ie 동사"},
+{es:"piensa",ko:"그/그녀/당신은 생각한다 (pensar)",l:7,c:"7과 e→ie 동사"},
+{es:"pensamos",ko:"우리는 생각한다 (pensar)",l:7,c:"7과 e→ie 동사"},
+{es:"piensan",ko:"그들/당신들은 생각한다 (pensar)",l:7,c:"7과 e→ie 동사"},
+{es:"preferir",ko:"선호하다",l:7,c:"7과 e→ie 동사"},
+{es:"prefiero",ko:"나는 선호한다 (preferir 1인칭단수)",l:7,c:"7과 e→ie 동사"},
+{es:"prefieres",ko:"너는 선호한다 (preferir)",l:7,c:"7과 e→ie 동사"},
+{es:"prefiere",ko:"그/그녀/당신은 선호한다 (preferir)",l:7,c:"7과 e→ie 동사"},
+{es:"preferimos",ko:"우리는 선호한다 (preferir)",l:7,c:"7과 e→ie 동사"},
+{es:"prefieren",ko:"그들/당신들은 선호한다 (preferir)",l:7,c:"7과 e→ie 동사"},
+{es:"sentir",ko:"느끼다, 유감이다",l:7,c:"7과 e→ie 동사"},
+{es:"Lo siento mucho.",ko:"정말 미안합니다.",l:7,c:"7과 e→ie 동사"},
+{es:"empezar",ko:"시작하다",l:7,c:"7과 e→ie 동사"},
+{es:"recomendar",ko:"추천하다, 권하다",l:7,c:"7과 e→ie 동사"},
+{es:"cerrar",ko:"닫다",l:7,c:"7과 e→ie 동사"},
+{es:"pensar + 동사원형",ko:"~할 생각이다",l:7,c:"7과 e→ie 동사"},
+{es:"preferir + 동사원형",ko:"~하기를 선호하다",l:7,c:"7과 e→ie 동사"},
+
+{es:"Me da el libro.",ko:"그는 나에게 책을 준다.",l:7,c:"7과 목적 대명사"},
+{es:"dártelo",ko:"그것을 너에게 주는 것 (동사원형+후치)",l:7,c:"7과 목적 대명사"},
+{es:"Bésame mucho.",ko:"나에게 뽀뽀 많이 해줘.",l:7,c:"7과 목적 대명사"},
+{es:"estudiándolo",ko:"그것을 공부하면서 (현재분사+후치)",l:7,c:"7과 목적 대명사"},
+{es:"Se lo escribo a mi amigo.",ko:"나는 그것을 내 친구에게 써준다.",l:7,c:"7과 목적 대명사"},
+{es:"Se las regalo a mi mujer.",ko:"나는 그것들을 내 아내에게 선물한다.",l:7,c:"7과 목적 대명사"},
+{es:"Quiero comprártelo.",ko:"나는 그것을 너에게 사주고 싶다.",l:7,c:"7과 목적 대명사"},
+{es:"Quiero verla algún día.",ko:"나는 언젠가 그것을 보고 싶다.",l:7,c:"7과 목적 대명사"},
+{es:"saludar",ko:"인사하다",l:7,c:"7과 목적 대명사"},
+{es:"agradecer",ko:"감사하다",l:7,c:"7과 목적 대명사"},
+{es:"Mi padre se la envía.",ko:"우리 아버지는 그것을 그녀에게 보낸다.",l:7,c:"7과 목적 대명사"},
+
+{es:"conozco",ko:"나는 안다 (conocer 1인칭단수, -zc- 불규칙)",l:7,c:"7과 saber·conocer"},
+{es:"¿Sabes nadar?",ko:"너 수영할 줄 아니?",l:7,c:"7과 saber·conocer"},
+{es:"No sé nadar.",ko:"나는 수영할 줄 모른다.",l:7,c:"7과 saber·conocer"},
+{es:"Conozco Seúl.",ko:"나는 서울을 안다 (가본 적 있다).",l:7,c:"7과 saber·conocer"},
+{es:"Sé manejar autos.",ko:"나는 자동차를 운전할 줄 안다.",l:7,c:"7과 saber·conocer"},
+{es:"¿Conoces al embajador de España?",ko:"너는 스페인 대사를 아니?",l:7,c:"7과 saber·conocer"},
+{es:"tardar + tiempo + en",ko:"~하는데 시간이 걸리다",l:7,c:"7과 saber·conocer"},
+{es:"graduarse",ko:"졸업하다",l:7,c:"7과 saber·conocer"},
+
+{es:"¿Cuánto cuesta?",ko:"얼마예요? (의문 부사, 형태 고정)",l:7,c:"7과 cuánto"},
+{es:"¿Cuántos libros tienes?",ko:"너는 책을 몇 권 가지고 있니?",l:7,c:"7과 cuánto"},
+{es:"¿Cuántas flores recibes?",ko:"너는 꽃을 몇 송이 받니?",l:7,c:"7과 cuánto"},
+{es:"¿Cuántas veces...?",ko:"몇 번이나 ~해?",l:7,c:"7과 cuánto"},
+
+{es:"el/la más + 형용사",ko:"가장 ~한 (최상급)",l:7,c:"7과 최상급"},
+{es:"mi mejor amigo",ko:"나의 가장 친한 친구",l:7,c:"7과 최상급"},
+{es:"la comida más famosa de México",ko:"멕시코에서 가장 유명한 음식",l:7,c:"7과 최상급"},
+
+{es:"normalmente",ko:"보통은",l:7,c:"7과 빈도 부사"},
+{es:"con frecuencia",ko:"자주",l:7,c:"7과 빈도 부사"},
+{es:"a menudo",ko:"자주",l:7,c:"7과 빈도 부사"},
+{es:"a veces",ko:"때때로",l:7,c:"7과 빈도 부사"},
+
+{es:"la Navidad",ko:"크리스마스",l:7,c:"7과 기념일"},
+{es:"la Nochebuena",ko:"크리스마스 이브",l:7,c:"7과 기념일"},
+{es:"la Nochevieja",ko:"섣달 그믐밤",l:7,c:"7과 기념일"},
+{es:"el Día de los Padres",ko:"어버이날",l:7,c:"7과 기념일"},
+{es:"el Día de los Niños",ko:"어린이날",l:7,c:"7과 기념일"},
+{es:"el Día de los Maestros",ko:"스승의 날",l:7,c:"7과 기념일"},
+{es:"el Día de los Reyes Magos",ko:"동방박사의 날",l:7,c:"7과 기념일"},
+{es:"el Día de San Valentín",ko:"발렌타인 데이",l:7,c:"7과 기념일"},
+
+{es:"¿Adónde quieres viajar estas vacaciones?",ko:"이번 방학에 어디로 여행하고 싶니?",l:7,c:"7과 표현"},
+{es:"Quiero viajar por España.",ko:"스페인으로 여행 가고 싶어.",l:7,c:"7과 표현"},
+{es:"probar",ko:"맛보다, 시도하다",l:7,c:"7과 표현"},
+{es:"¿Quieres probar el mate?",ko:"마테 차 마셔 볼래?",l:7,c:"7과 표현"},
+{es:"el ingrediente",ko:"재료",l:7,c:"7과 표현"},
+{es:"la aplicación",ko:"애플리케이션, 앱",l:7,c:"7과 표현"},
+{es:"consultar el correo electrónico",ko:"이메일을 확인하다",l:7,c:"7과 표현"},
+{es:"¿Cuál es tu aplicación más usada?",ko:"네가 가장 많이 쓰는 앱이 뭐야?",l:7,c:"7과 표현"},
+{es:"algún día",ko:"언젠가",l:7,c:"7과 표현"},
+{es:"la verdad",ko:"사실, 진실",l:7,c:"7과 표현"},
 ];
 
 /* ============ 상태 ============ */
 const $ = id => document.getElementById(id);
-let cfg = {lessons:new Set([2,3,4,5,6,8]), cat:'전체', dir:'es2ko', mode:'mc', count:20, auto:false};
+let cfg = {lessons:new Set([2,3,4,5,6,7,8]), cat:'전체', dir:'es2ko', mode:'mc', count:20, auto:false};
 
 /* ============ 발음 (TTS) ============ */
 const TTS = ('speechSynthesis' in window);
