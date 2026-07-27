@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>스페인어 단어 퀴즈 · 2~6과</title>
+<title>스페인어 단어 퀴즈 · 2~6, 8과</title>
 <style>
   :root{
     --bg:#0f1226; --bg2:#171a35; --card:#1e2246; --card2:#262a52;
@@ -112,7 +112,7 @@
 <div class="wrap">
   <header>
     <h1><span class="flag">Español</span> 단어 퀴즈 🇪🇸</h1>
-    <p>KIIP 2~6과 · 단어와 표현 마스터하기</p>
+    <p>KIIP 2~6, 8과 · 단어와 표현 마스터하기</p>
   </header>
 
   <!-- ================= START ================= -->
@@ -124,6 +124,7 @@
       <div class="chip on" data-lesson="4">4과</div>
       <div class="chip on" data-lesson="5">5과</div>
       <div class="chip on" data-lesson="6">6과</div>
+      <div class="chip on" data-lesson="8">8과</div>
     </div>
 
     <div class="label">🗂️ 분야 (전체 = 모두)</div>
@@ -787,11 +788,149 @@ const DATA = [
 {es:"¿Qué te parece?",ko:"네 생각엔 어때?",l:6,c:"6과 표현"},
 {es:"¿Quiénes?",ko:"누구들? (복수)",l:6,c:"6과 표현"},
 {es:"el Día de Muertos",ko:"망자의 날",l:6,c:"6과 표현"},
+
+{es:"voy",ko:"나는 간다 (ir 1인칭단수)",l:8,c:"8과 IR 동사"},
+{es:"vas",ko:"너는 간다 (ir 2인칭단수)",l:8,c:"8과 IR 동사"},
+{es:"va",ko:"그/그녀/당신은 간다 (ir 3인칭단수)",l:8,c:"8과 IR 동사"},
+{es:"vamos",ko:"우리는 간다 (ir 1인칭복수)",l:8,c:"8과 IR 동사"},
+{es:"vais",ko:"너희는 간다 (ir 2인칭복수)",l:8,c:"8과 IR 동사"},
+{es:"van",ko:"그들/당신들은 간다 (ir 3인칭복수)",l:8,c:"8과 IR 동사"},
+{es:"doy",ko:"나는 준다 (dar 1인칭단수)",l:8,c:"8과 IR 동사"},
+{es:"das",ko:"너는 준다 (dar 2인칭단수)",l:8,c:"8과 IR 동사"},
+{es:"da",ko:"그/그녀/당신은 준다 (dar 3인칭단수)",l:8,c:"8과 IR 동사"},
+{es:"damos",ko:"우리는 준다 (dar 1인칭복수)",l:8,c:"8과 IR 동사"},
+{es:"dais",ko:"너희는 준다 (dar 2인칭복수)",l:8,c:"8과 IR 동사"},
+{es:"dan",ko:"그들/당신들은 준다 (dar 3인칭복수)",l:8,c:"8과 IR 동사"},
+
+{es:"ir a + inf.",ko:"~할 것이다 (가까운 미래)",l:8,c:"8과 표현"},
+{es:"¿Adónde vas?",ko:"너 어디 가니?",l:8,c:"8과 표현"},
+{es:"Voy al parque.",ko:"나는 공원에 가.",l:8,c:"8과 표현"},
+{es:"Voy a nadar en la playa.",ko:"나는 해변에서 수영할 거야.",l:8,c:"8과 표현"},
+{es:"¿Qué vas a hacer mañana?",ko:"너 내일 뭐 할 거야?",l:8,c:"8과 표현"},
+{es:"¿Qué vas a comer hoy?",ko:"너 오늘 뭐 먹을 거야?",l:8,c:"8과 표현"},
+{es:"¿Qué vas a beber mañana?",ko:"너 내일 뭐 마실 거야?",l:8,c:"8과 표현"},
+{es:"¿A qué país vas a viajar?",ko:"어느 나라로 여행 갈 거야?",l:8,c:"8과 표현"},
+{es:"ir de compras",ko:"쇼핑하러 가다",l:8,c:"8과 표현"},
+{es:"ir de campamento",ko:"캠핑 가다",l:8,c:"8과 표현"},
+{es:"jugar al fútbol",ko:"축구하다",l:8,c:"8과 표현"},
+{es:"la panadería",ko:"빵집",l:8,c:"8과 표현"},
+{es:"el panadero",ko:"제빵사",l:8,c:"8과 표현"},
+{es:"la heladería",ko:"아이스크림 가게",l:8,c:"8과 표현"},
+{es:"el heladero",ko:"아이스크림 판매원",l:8,c:"8과 표현"},
+{es:"¿Cuánto cuesta?",ko:"얼마예요?",l:8,c:"8과 표현"},
+{es:"andando",ko:"걸어서",l:8,c:"8과 표현"},
+{es:"corriendo",ko:"달려서",l:8,c:"8과 표현"},
+{es:"saltando",ko:"깡총 뛰면서",l:8,c:"8과 표현"},
+{es:"bailando",ko:"춤추며",l:8,c:"8과 표현"},
+{es:"dar una fiesta",ko:"파티를 열다",l:8,c:"8과 표현"},
+{es:"visitar a mis padres",ko:"부모님을 방문하다",l:8,c:"8과 표현"},
+{es:"pasar las vacaciones",ko:"휴가를 보내다",l:8,c:"8과 표현"},
+{es:"¿Con quién vas a pasar las Navidades?",ko:"누구랑 크리스마스 연휴를 보낼 거니?",l:8,c:"8과 표현"},
+{es:"aficionado, da",ko:"~의 팬인 (형용사)",l:8,c:"8과 표현"},
+{es:"Soy aficionado al cine.",ko:"나는 영화 팬이다.",l:8,c:"8과 표현"},
+{es:"fanático, ca",ko:"열성 팬",l:8,c:"8과 표현"},
+{es:"ni... ni...",ko:"~도 ~도 아니다",l:8,c:"8과 표현"},
+{es:"No me gusta ni el café ni el té.",ko:"나는 커피도 차도 좋아하지 않는다.",l:8,c:"8과 표현"},
+{es:"también",ko:"또한, 역시",l:8,c:"8과 표현"},
+{es:"tampoco",ko:"~도 아니다 (부정)",l:8,c:"8과 표현"},
+{es:"el puente festivo",ko:"황금연휴, 징검다리 연휴",l:8,c:"8과 표현"},
+
+{es:"¿Qué día es hoy?",ko:"오늘 무슨 요일이야?",l:8,c:"8과 요일·날짜"},
+{es:"¿Qué fecha es hoy?",ko:"오늘 며칠이야?",l:8,c:"8과 요일·날짜"},
+{es:"lunes",ko:"월요일",l:8,c:"8과 요일·날짜"},
+{es:"martes",ko:"화요일",l:8,c:"8과 요일·날짜"},
+{es:"miércoles",ko:"수요일",l:8,c:"8과 요일·날짜"},
+{es:"jueves",ko:"목요일",l:8,c:"8과 요일·날짜"},
+{es:"viernes",ko:"금요일",l:8,c:"8과 요일·날짜"},
+{es:"sábado",ko:"토요일",l:8,c:"8과 요일·날짜"},
+{es:"domingo",ko:"일요일",l:8,c:"8과 요일·날짜"},
+{es:"enero",ko:"1월",l:8,c:"8과 요일·날짜"},
+{es:"febrero",ko:"2월",l:8,c:"8과 요일·날짜"},
+{es:"marzo",ko:"3월",l:8,c:"8과 요일·날짜"},
+{es:"abril",ko:"4월",l:8,c:"8과 요일·날짜"},
+{es:"mayo",ko:"5월",l:8,c:"8과 요일·날짜"},
+{es:"junio",ko:"6월",l:8,c:"8과 요일·날짜"},
+{es:"julio",ko:"7월",l:8,c:"8과 요일·날짜"},
+{es:"agosto",ko:"8월",l:8,c:"8과 요일·날짜"},
+{es:"septiembre",ko:"9월",l:8,c:"8과 요일·날짜"},
+{es:"octubre",ko:"10월",l:8,c:"8과 요일·날짜"},
+{es:"noviembre",ko:"11월",l:8,c:"8과 요일·날짜"},
+{es:"diciembre",ko:"12월",l:8,c:"8과 요일·날짜"},
+
+{es:"cerrado",ko:"닫힌 (cerrar 과거분사)",l:8,c:"8과 과거분사"},
+{es:"abierto",ko:"열린 (abrir 과거분사, 불규칙)",l:8,c:"8과 과거분사"},
+{es:"escrito",ko:"쓰여진 (escribir 과거분사, 불규칙)",l:8,c:"8과 과거분사"},
+{es:"dicho",ko:"말해진 (decir 과거분사, 불규칙)",l:8,c:"8과 과거분사"},
+{es:"hecho",ko:"만들어진/한 (hacer 과거분사, 불규칙)",l:8,c:"8과 과거분사"},
+{es:"puesto",ko:"놓여진 (poner 과거분사, 불규칙)",l:8,c:"8과 과거분사"},
+{es:"roto",ko:"깨진 (romper 과거분사, 불규칙)",l:8,c:"8과 과거분사"},
+{es:"visto",ko:"보여진 (ver 과거분사, 불규칙)",l:8,c:"8과 과거분사"},
+{es:"cancelado",ko:"취소된 (cancelar 과거분사)",l:8,c:"8과 과거분사"},
+{es:"sentado",ko:"앉은 (sentar 과거분사)",l:8,c:"8과 과거분사"},
+{es:"comido",ko:"먹힌 (comer 과거분사)",l:8,c:"8과 과거분사"},
+{es:"construido",ko:"지어진 (construir 과거분사)",l:8,c:"8과 과거분사"},
+{es:"Todos los vuelos están cancelados.",ko:"모든 항공편이 취소되었다.",l:8,c:"8과 과거분사"},
+{es:"El vaso está roto.",ko:"이 잔은 깨졌다.",l:8,c:"8과 과거분사"},
+{es:"Las ventanas están abiertas.",ko:"창문이 열려 있다.",l:8,c:"8과 과거분사"},
+
+{es:"una vez",ko:"한 번",l:8,c:"8과 빈도 표현"},
+{es:"~ veces al día",ko:"하루에 ~번",l:8,c:"8과 빈도 표현"},
+{es:"~ veces a la semana",ko:"일주일에 ~번",l:8,c:"8과 빈도 표현"},
+{es:"~ veces al mes",ko:"한 달에 ~번",l:8,c:"8과 빈도 표현"},
+{es:"~ veces al año",ko:"일 년에 ~번",l:8,c:"8과 빈도 표현"},
+{es:"cada dos semanas",ko:"매 2주마다",l:8,c:"8과 빈도 표현"},
+{es:"¿Con qué frecuencia...?",ko:"얼마나 자주 ~해?",l:8,c:"8과 빈도 표현"},
+{es:"siempre",ko:"항상",l:8,c:"8과 빈도 표현"},
+{es:"nunca",ko:"절대, 결코 (~않다)",l:8,c:"8과 빈도 표현"},
+
+{es:"cuando",ko:"~할 때",l:8,c:"8과 cuando"},
+{es:"¿Qué haces cuando tienes fiebre?",ko:"열이 날 때 너는 어떻게 해?",l:8,c:"8과 cuando"},
+{es:"Cuando tengo fiebre, voy al hospital.",ko:"열이 날 때, 나는 병원에 가.",l:8,c:"8과 cuando"},
+{es:"Cuando estoy cansado/a, duermo mucho.",ko:"피곤할 때, 나는 많이 자.",l:8,c:"8과 cuando"},
+{es:"Cuando tengo prisa, tomo el taxi.",ko:"급할 때, 나는 택시를 타.",l:8,c:"8과 cuando"},
+{es:"Cuando estoy resfriado/a, voy al médico.",ko:"감기에 걸렸을 때, 나는 병원에 가.",l:8,c:"8과 cuando"},
+
+{es:"doler",ko:"아프다 (gustar형 동사)",l:8,c:"8과 doler 동사"},
+{es:"me duele",ko:"나는 아프다 (단수 대상)",l:8,c:"8과 doler 동사"},
+{es:"me duelen",ko:"나는 아프다 (복수 대상)",l:8,c:"8과 doler 동사"},
+{es:"el diente",ko:"이, 치아",l:8,c:"8과 doler 동사"},
+{es:"los dientes",ko:"이들, 치아들",l:8,c:"8과 doler 동사"},
+{es:"estar resfriado/a",ko:"감기 걸리다",l:8,c:"8과 doler 동사"},
+{es:"tener gripe",ko:"독감에 걸리다",l:8,c:"8과 doler 동사"},
+{es:"estar estresado/a",ko:"스트레스 받다",l:8,c:"8과 doler 동사"},
+
+{es:"saber",ko:"알다 (사실, 정보, 방법)",l:8,c:"8과 saber·conocer"},
+{es:"conocer",ko:"알다 (사람, 장소, 경험)",l:8,c:"8과 saber·conocer"},
+{es:"sé",ko:"나는 안다 (saber 1인칭단수, 불규칙)",l:8,c:"8과 saber·conocer"},
+{es:"sabes",ko:"너는 안다 (saber 2인칭단수)",l:8,c:"8과 saber·conocer"},
+{es:"sabe",ko:"그/그녀/당신은 안다 (saber)",l:8,c:"8과 saber·conocer"},
+{es:"sabemos",ko:"우리는 안다 (saber)",l:8,c:"8과 saber·conocer"},
+{es:"sabéis",ko:"너희는 안다 (saber)",l:8,c:"8과 saber·conocer"},
+{es:"saben",ko:"그들/당신들은 안다 (saber)",l:8,c:"8과 saber·conocer"},
+{es:"conozco",ko:"나는 안다 (conocer 1인칭단수, 불규칙)",l:8,c:"8과 saber·conocer"},
+{es:"saber de / sobre",ko:"~에 대하여 알다",l:8,c:"8과 saber·conocer"},
+
+{es:"me",ko:"나를/나에게 (목적대명사)",l:8,c:"8과 목적 대명사"},
+{es:"te",ko:"너를/너에게 (목적대명사)",l:8,c:"8과 목적 대명사"},
+{es:"lo",ko:"그것을/그를 (직접목적, 남성)",l:8,c:"8과 목적 대명사"},
+{es:"la",ko:"그것을/그녀를 (직접목적, 여성)",l:8,c:"8과 목적 대명사"},
+{es:"le",ko:"그에게/그녀에게 (간접목적)",l:8,c:"8과 목적 대명사"},
+{es:"nos",ko:"우리를/우리에게",l:8,c:"8과 목적 대명사"},
+{es:"os",ko:"너희를/너희에게",l:8,c:"8과 목적 대명사"},
+{es:"los / las",ko:"그것들을/그들을 (직접목적, 복수)",l:8,c:"8과 목적 대명사"},
+{es:"les",ko:"그들에게/당신들에게",l:8,c:"8과 목적 대명사"},
+{es:"se",ko:"재귀 대명사 (자신을/에게)",l:8,c:"8과 목적 대명사"},
+
+{es:"la Semana Santa",ko:"부활절 성주간",l:8,c:"8과 문화"},
+{es:"San Fermín",ko:"산 페르민 축제 (소몰이 축제)",l:8,c:"8과 문화"},
+{es:"Las Fallas",ko:"라스 파야스 축제",l:8,c:"8과 문화"},
+{es:"La Tomatina",ko:"라 토마티나 (토마토 축제)",l:8,c:"8과 문화"},
+{es:"el Día de la Independencia",ko:"독립기념일",l:8,c:"8과 문화"},
 ];
 
 /* ============ 상태 ============ */
 const $ = id => document.getElementById(id);
-let cfg = {lessons:new Set([2,3,4,5,6]), cat:'전체', dir:'es2ko', mode:'mc', count:20, auto:false};
+let cfg = {lessons:new Set([2,3,4,5,6,8]), cat:'전체', dir:'es2ko', mode:'mc', count:20, auto:false};
 
 /* ============ 발음 (TTS) ============ */
 const TTS = ('speechSynthesis' in window);
